@@ -1,0 +1,22 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/rtc/interface.c', 748, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/rtc/interface.c@748 (rtc_irq_set_freq :   %freq.off = add i32 %freq, -1, !dbg !24048)
+********Trace 0(1)********
+#####CTX##### rtc_dev_ioctl
+rtc_dev_ioctl (private/msm-google/drivers/rtc/rtc-dev.c@209)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55c42bcb5440 tf: 0x55c42c630e00 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/rtc/rtc-dev.c@209 (  %tm = alloca %struct.rtc_time, align 4)
+private/msm-google/drivers/rtc/rtc-dev.c@368 (  %conv125 = trunc i64 %arg to i32, !dbg !24370)
+private/msm-google/drivers/rtc/rtc-dev.c@368 (  %call126 = call i32 @rtc_irq_set_freq(%struct.rtc_device* %1, %struct.delayed_call* null, i32 %conv125) #9, !dbg !24371)
+#####CTX##### rtc_dev_ioctl -> rtc_irq_set_freq
+rtc_dev_ioctl (private/msm-google/drivers/rtc/rtc-dev.c@209)
+----> (private/msm-google/drivers/rtc/rtc-dev.c@368 :   %call126 = call i32 @rtc_irq_set_freq(%struct.rtc_device* %1, %struct.delayed_call* null, i32 %conv125) #9, !dbg !24371)
+rtc_irq_set_freq (private/msm-google/drivers/rtc/interface.c@748)
+#####INSTS#####
+private/msm-google/drivers/rtc/interface.c@748 (  %freq.off = add i32 %freq, -1, !dbg !24048)
+

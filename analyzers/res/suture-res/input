@@ -1,0 +1,226 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/input/ff-core.c', 196, [u'TaintedPointerDereferenceChecker'])
+(u'private/msm-google/drivers/input/ff-core.c', 203, [u'TaintedPointerDereferenceChecker'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-core.c@203 (erase_effect :   store %struct.file* %file, %struct.file** %arrayidx, align 8, !dbg !94831)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e518560 (7)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@196 (  %idxprom = sext i32 %effect_id to i64, !dbg !94810)
+private/msm-google/drivers/input/ff-core.c@196 (  %arrayidx = getelementptr %struct.ff_device, %struct.ff_device* %0, i64 0, i32 11, i64 %idxprom, !dbg !94810)
+private/msm-google/drivers/input/ff-core.c@203 (  store %struct.file* %file, %struct.file** %arrayidx, align 8, !dbg !94831)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-core.c@196 (erase_effect :   store %struct.file* null, %struct.file** %arrayidx, align 8, !dbg !94811)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e518560 (7)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@196 (  %idxprom = sext i32 %effect_id to i64, !dbg !94810)
+private/msm-google/drivers/input/ff-core.c@196 (  %arrayidx = getelementptr %struct.ff_device, %struct.ff_device* %0, i64 0, i32 11, i64 %idxprom, !dbg !94810)
+private/msm-google/drivers/input/ff-core.c@196 (  store %struct.file* null, %struct.file** %arrayidx, align 8, !dbg !94811)
+
+=========================GROUP 1 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/input/ff-core.c', 40, [u'TaintedPointerDereferenceChecker'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-core.c@40 (check_effect_access :   %1 = load %struct.file*, %struct.file** %arrayidx, align 8, !dbg !94797)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e415870 (8)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@190 (  %call = call fastcc i32 @check_effect_access(%struct.ff_device* %0, i32 %effect_id, %struct.file* %file) #14, !dbg !94794)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect -> check_effect_access
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+----> (private/msm-google/drivers/input/ff-core.c@190 :   %call = call fastcc i32 @check_effect_access(%struct.ff_device* %0, i32 %effect_id, %struct.file* %file) #14, !dbg !94794)
+check_effect_access (private/msm-google/drivers/input/ff-core.c@39)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@40 (  %idxprom = sext i32 %effect_id to i64, !dbg !94797)
+private/msm-google/drivers/input/ff-core.c@40 (  %arrayidx = getelementptr %struct.ff_device, %struct.ff_device* %ff, i64 0, i32 11, i64 %idxprom, !dbg !94797)
+private/msm-google/drivers/input/ff-core.c@40 (  %1 = load %struct.file*, %struct.file** %arrayidx, align 8, !dbg !94797)
+
+=========================GROUP 2 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/input/ff-memless.c', 466, [u'TaintedPointerDereferenceChecker'])
+(u'private/msm-google/drivers/input/ff-memless.c', 467, [u'TaintedPointerDereferenceChecker'])
+(u'private/msm-google/drivers/input/ff-memless.c', 469, [u'TaintedPointerDereferenceChecker'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-memless.c@467 (ml_ff_playback :   store i64 %or.i61, i64* %flags29, align 8, !dbg !94891)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e3e9920 (8)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@195 (  %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect -> ml_ff_playback
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+----> (private/msm-google/drivers/input/ff-core.c@195 :   %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+ml_ff_playback (private/msm-google/drivers/input/ff-memless.c@449)
+#####INSTS#####
+private/msm-google/drivers/input/ff-memless.c@450 (  %idxprom = sext i32 %effect_id to i64, !dbg !94786)
+private/msm-google/drivers/input/ff-memless.c@466 (  %flags29 = getelementptr %struct.ml_device, %struct.ml_device* %2, i64 0, i32 1, i64 %idxprom, i32 1, !dbg !94874)
+private/msm-google/drivers/input/ff-memless.c@467 (  store i64 %or.i61, i64* %flags29, align 8, !dbg !94891)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-memless.c@466 (ml_ff_playback :   %12 = load volatile i64, i64* %flags29, align 8, !dbg !94886)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e3e9920 (8)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@195 (  %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect -> ml_ff_playback
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+----> (private/msm-google/drivers/input/ff-core.c@195 :   %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+ml_ff_playback (private/msm-google/drivers/input/ff-memless.c@449)
+#####INSTS#####
+private/msm-google/drivers/input/ff-memless.c@450 (  %idxprom = sext i32 %effect_id to i64, !dbg !94786)
+private/msm-google/drivers/input/ff-memless.c@466 (  %flags29 = getelementptr %struct.ml_device, %struct.ml_device* %2, i64 0, i32 1, i64 %idxprom, i32 1, !dbg !94874)
+private/msm-google/drivers/input/ff-memless.c@466 (  %12 = load volatile i64, i64* %flags29, align 8, !dbg !94886)
+
+++++++++++++++++WARN 2 (1 - 1)++++++++++++++++
+TaintedPointerDereferenceChecker says: private/msm-google/drivers/input/ff-memless.c@469 (ml_ff_playback :   store i64 %and.i, i64* %flags29, align 8, !dbg !94901)
+********Trace 0(1)********
+#####CTX##### evdev_do_ioctl
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x559c9b2531e0 tf: 0x559c9e3e9920 (8)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/input/evdev.c@1059 (  %abs = alloca %struct.input_absinfo, align 4)
+private/msm-google/drivers/input/evdev.c@1107 (  %69 = ptrtoint i8* %p to i64, !dbg !95214)
+private/msm-google/drivers/input/evdev.c@1107 (  %conv99 = trunc i64 %69 to i32, !dbg !95215)
+private/msm-google/drivers/input/evdev.c@1107 (  %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+#####CTX##### evdev_do_ioctl -> input_ff_erase
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@232 (  %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+#####INSTS#####
+private/msm-google/drivers/input/ff-core.c@195 (  %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+#####CTX##### evdev_do_ioctl -> input_ff_erase -> erase_effect -> ml_ff_playback
+evdev_do_ioctl (private/msm-google/drivers/input/evdev.c@1059)
+----> (private/msm-google/drivers/input/evdev.c@1107 :   %call100 = call i32 @input_ff_erase(%struct.input_dev* %3, i32 %conv99, %struct.file* %file) #14, !dbg !95216)
+input_ff_erase (private/msm-google/drivers/input/ff-core.c@225)
+----> (private/msm-google/drivers/input/ff-core.c@232 :   %call2 = call fastcc i32 @erase_effect(%struct.input_dev* %dev, i32 %effect_id, %struct.file* %file) #15, !dbg !94812)
+erase_effect (private/msm-google/drivers/input/ff-core.c@187)
+----> (private/msm-google/drivers/input/ff-core.c@195 :   %call2 = call i32 %1(%struct.input_dev* %dev, i32 %effect_id, i32 0) #15, !dbg !94809)
+ml_ff_playback (private/msm-google/drivers/input/ff-memless.c@449)
+#####INSTS#####
+private/msm-google/drivers/input/ff-memless.c@450 (  %idxprom = sext i32 %effect_id to i64, !dbg !94786)
+private/msm-google/drivers/input/ff-memless.c@466 (  %flags29 = getelementptr %struct.ml_device, %struct.ml_device* %2, i64 0, i32 1, i64 %idxprom, i32 1, !dbg !94874)
+private/msm-google/drivers/input/ff-memless.c@469 (  store i64 %and.i, i64* %flags29, align 8, !dbg !94901)
+

@@ -1,0 +1,110 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/tty/n_tty.c', 2289, [u'IntegerOverflowDetector', u'TaintedLoopBoundDetector'])
+(u'private/msm-google/drivers/tty/n_tty.c', 2301, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/tty/n_tty.c@2301 (n_tty_read :   %sub.ptr.sub184 = sub i64 %57, %sub.ptr.rhs.cast183, !dbg !62048)
+********Trace 0(1)********
+#####CTX##### tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a517b685f0 tf: 0x55a519716400 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@851 (  %f_inode.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 2, !dbg !61664)
+private/msm-google/drivers/tty/tty_io.c@866 (  %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+#####CTX##### tty_read -> n_tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+----> (private/msm-google/drivers/tty/tty_io.c@866 :   %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+n_tty_read (private/msm-google/drivers/tty/n_tty.c@2160)
+#####INSTS#####
+private/msm-google/drivers/tty/n_tty.c@2164 (  store i8* %buf, i8** %b, align 8, !dbg !61703)
+private/msm-google/drivers/tty/n_tty.c@2301 (  %57 = load i64, i64* %56, align 8, !dbg !62046)
+private/msm-google/drivers/tty/n_tty.c@2301 (  %sub.ptr.sub184 = sub i64 %57, %sub.ptr.rhs.cast183, !dbg !62048)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/tty/n_tty.c@2301 (n_tty_read :   %sub.ptr.sub184 = sub i64 %57, %sub.ptr.rhs.cast183, !dbg !62048)
+********Trace 0(1)********
+#####CTX##### tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a517b685f0 tf: 0x55a5197f5530 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@851 (  %f_inode.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 2, !dbg !61664)
+private/msm-google/drivers/tty/tty_io.c@866 (  %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+#####CTX##### tty_read -> n_tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+----> (private/msm-google/drivers/tty/tty_io.c@866 :   %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+n_tty_read (private/msm-google/drivers/tty/n_tty.c@2160)
+#####INSTS#####
+private/msm-google/drivers/tty/n_tty.c@2301 (  %sub.ptr.rhs.cast183 = ptrtoint i8* %buf to i64, !dbg !62048)
+private/msm-google/drivers/tty/n_tty.c@2301 (  %sub.ptr.sub184 = sub i64 %57, %sub.ptr.rhs.cast183, !dbg !62048)
+
+++++++++++++++++WARN 2 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/tty/n_tty.c@2289 (n_tty_read :   %sub.ptr.sub = sub i64 %53, %sub.ptr.rhs.cast, !dbg !62034)
+********Trace 0(1)********
+#####CTX##### tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a517b685f0 tf: 0x55a5196813c0 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@851 (  %f_inode.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 2, !dbg !61664)
+private/msm-google/drivers/tty/tty_io.c@866 (  %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+#####CTX##### tty_read -> n_tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+----> (private/msm-google/drivers/tty/tty_io.c@866 :   %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+n_tty_read (private/msm-google/drivers/tty/n_tty.c@2160)
+#####INSTS#####
+private/msm-google/drivers/tty/n_tty.c@2164 (  store i8* %buf, i8** %b, align 8, !dbg !61703)
+private/msm-google/drivers/tty/n_tty.c@2289 (  %53 = load i64, i64* %12, align 8, !dbg !62033)
+private/msm-google/drivers/tty/n_tty.c@2289 (  %sub.ptr.sub = sub i64 %53, %sub.ptr.rhs.cast, !dbg !62034)
+
+++++++++++++++++WARN 3 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/tty/n_tty.c@2289 (n_tty_read :   %sub.ptr.sub = sub i64 %53, %sub.ptr.rhs.cast, !dbg !62034)
+********Trace 0(1)********
+#####CTX##### tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a517b685f0 tf: 0x55a50d2c0330 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@851 (  %f_inode.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 2, !dbg !61664)
+private/msm-google/drivers/tty/tty_io.c@866 (  %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+#####CTX##### tty_read -> n_tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+----> (private/msm-google/drivers/tty/tty_io.c@866 :   %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+n_tty_read (private/msm-google/drivers/tty/n_tty.c@2160)
+#####INSTS#####
+private/msm-google/drivers/tty/n_tty.c@2289 (  %sub.ptr.rhs.cast = ptrtoint i8* %buf to i64, !dbg !61811)
+private/msm-google/drivers/tty/n_tty.c@2289 (  %sub.ptr.sub = sub i64 %53, %sub.ptr.rhs.cast, !dbg !62034)
+
+++++++++++++++++WARN 4 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/tty/n_tty.c@2289 (n_tty_read :   br i1 %cmp166, label %if.end169, label %while.end, !dbg !62036)
+********Trace 0(1)********
+#####CTX##### tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a517b685f0 tf: 0x55a5197d4440 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@851 (  %f_inode.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 2, !dbg !61664)
+private/msm-google/drivers/tty/tty_io.c@866 (  %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+#####CTX##### tty_read -> n_tty_read
+tty_read (private/msm-google/drivers/tty/tty_io.c@851)
+----> (private/msm-google/drivers/tty/tty_io.c@866 :   %call16 = call i64 %6(%struct.tty_struct* nonnull %3, %struct.file* %file, i8* %buf, i64 %count) #13, !dbg !61712)
+n_tty_read (private/msm-google/drivers/tty/n_tty.c@2160)
+#####INSTS#####
+private/msm-google/drivers/tty/n_tty.c@2289 (  %sub.ptr.rhs.cast = ptrtoint i8* %buf to i64, !dbg !61811)
+private/msm-google/drivers/tty/n_tty.c@2289 (  %sub.ptr.sub = sub i64 %53, %sub.ptr.rhs.cast, !dbg !62034)
+private/msm-google/drivers/tty/n_tty.c@2289 (  %cmp166 = icmp slt i64 %sub.ptr.sub, %minimum.0, !dbg !62035)
+private/msm-google/drivers/tty/n_tty.c@2289 (  br i1 %cmp166, label %if.end169, label %while.end, !dbg !62036)
+
+=========================GROUP 1 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/tty/tty_io.c', 2626, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/tty/tty_io.c@2626 (tty_ioctl :   %mul = mul i64 %arg, 100, !dbg !61939)
+********Trace 0(1)********
+#####CTX##### tty_ioctl
+tty_ioctl (private/msm-google/drivers/tty/tty_io.c@2536)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55a43fe13eb0 tf: 0x55a43fe16320 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/tty/tty_io.c@2536 (  %private_data.i = getelementptr inbounds %struct.file, %struct.file* %file, i64 0, i32 16, !dbg !61685)
+private/msm-google/drivers/tty/tty_io.c@2626 (  %mul = mul i64 %arg, 100, !dbg !61939)
+

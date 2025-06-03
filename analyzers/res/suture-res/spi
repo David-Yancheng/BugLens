@@ -1,0 +1,481 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spi.c', 2834, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spi.c@2834 (__spi_validate :   %add = add i32 %20, %19, !dbg !14928)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd5955530 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@235 (  store i32 %15, i32* %len2, align 8, !dbg !14998)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3104 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14842)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2834 (  %19 = load i32, i32* %18, align 8, !dbg !14927)
+private/msm-google/drivers/spi/spi.c@2834 (  %add = add i32 %20, %19, !dbg !14928)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spi.c@2834 (__spi_validate :   %add = add i32 %20, %19, !dbg !14928)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd59b8980 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@235 (  store i32 %15, i32* %len2, align 8, !dbg !14998)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> spi_async_locked -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3129 :   %call64 = call i32 @spi_async_locked(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !15080)
+spi_async_locked (private/msm-google/drivers/spi/spi.c@3009)
+----> (private/msm-google/drivers/spi/spi.c@3013 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #10, !dbg !14806)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2834 (  %19 = load i32, i32* %18, align 8, !dbg !14927)
+private/msm-google/drivers/spi/spi.c@2834 (  %add = add i32 %20, %19, !dbg !14928)
+
+=========================GROUP 1 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 243, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@243 (spidev_message :   br i1 %17, label %done, label %if.end10, !dbg !15000)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd4b33240 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@243 (  %16 = or i32 %add, %15, !dbg !15000)
+private/msm-google/drivers/spi/spidev.c@243 (  %17 = icmp slt i32 %16, 0, !dbg !15000)
+private/msm-google/drivers/spi/spidev.c@243 (  br i1 %17, label %done, label %if.end10, !dbg !15000)
+
+=========================GROUP 2 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 260, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/spi/spidev.c', 261, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spidev.c@260 (spidev_message :   %add27 = add i32 %15, %tx_total.0230, !dbg !15020)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd510d220 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@260 (  %add27 = add i32 %15, %tx_total.0230, !dbg !15020)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@261 (spidev_message :   br i1 %cmp28, label %done, label %if.end31, !dbg !15025)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd5084450 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@260 (  %add27 = add i32 %15, %tx_total.0230, !dbg !15020)
+private/msm-google/drivers/spi/spidev.c@261 (  %cmp28 = icmp ugt i32 %add27, %21, !dbg !15024)
+private/msm-google/drivers/spi/spidev.c@261 (  br i1 %cmp28, label %done, label %if.end31, !dbg !15025)
+
+=========================GROUP 3 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 266, [u'IntegerOverflowDetector', u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@266 (spidev_message :   br i1 %cmp3.i.i, label %if.then.i.i, label %if.end12.i.i, !dbg !15057, !prof !15058)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd4b29b00 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@268 (  %24 = load i32, i32* %len, align 8, !dbg !15030)
+private/msm-google/drivers/spi/spidev.c@268 (  %conv35 = zext i32 %24 to i64, !dbg !15031)
+private/msm-google/drivers/spi/spidev.c@266 (  %cmp3.i.i = icmp ult i64 %conv2.i.i, %conv35, !dbg !15055)
+private/msm-google/drivers/spi/spidev.c@266 (  br i1 %cmp3.i.i, label %if.then.i.i, label %if.end12.i.i, !dbg !15057, !prof !15058)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@266 (spidev_message :   br i1 %tobool7.i.i, label %if.end39, label %if.then15.i.i, !dbg !15166, !prof !15167)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd4e77030 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@268 (  %24 = load i32, i32* %len, align 8, !dbg !15030)
+private/msm-google/drivers/spi/spidev.c@268 (  %conv35 = zext i32 %24 to i64, !dbg !15031)
+private/msm-google/drivers/spi/spidev.c@266 (  %res.0.i.i = phi i64 [ %call6.i.i179, %if.then.i6.i ], [ %conv35, %if.then.i ], !dbg !15101)
+private/msm-google/drivers/spi/spidev.c@266 (  %tobool7.i.i = icmp eq i64 %res.0.i.i, 0, !dbg !15164)
+private/msm-google/drivers/spi/spidev.c@266 (  br i1 %tobool7.i.i, label %if.end39, label %if.then15.i.i, !dbg !15166, !prof !15167)
+
+++++++++++++++++WARN 2 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spidev.c@266 (spidev_message :   %sub.i.i = sub i64 %conv35.le, %res.0.i.i, !dbg !15168)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd4c92b10 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@268 (  %24 = load i32, i32* %len, align 8, !dbg !15030)
+private/msm-google/drivers/spi/spidev.c@268 (  %conv35 = zext i32 %24 to i64, !dbg !15031)
+private/msm-google/drivers/spi/spidev.c@266 (  %res.0.i.i = phi i64 [ %call6.i.i179, %if.then.i6.i ], [ %conv35, %if.then.i ], !dbg !15101)
+private/msm-google/drivers/spi/spidev.c@266 (  %sub.i.i = sub i64 %conv35.le, %res.0.i.i, !dbg !15168)
+
+++++++++++++++++WARN 3 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spidev.c@266 (spidev_message :   %sub.i.i = sub i64 %conv35.le, %res.0.i.i, !dbg !15168)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd4fd5d90 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@268 (  %24 = load i32, i32* %len, align 8, !dbg !15030)
+private/msm-google/drivers/spi/spidev.c@268 (  %conv35.le = zext i32 %24 to i64, !dbg !15031)
+private/msm-google/drivers/spi/spidev.c@266 (  %sub.i.i = sub i64 %conv35.le, %res.0.i.i, !dbg !15168)
+
+=========================GROUP 4 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 237, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spidev.c@237 (spidev_message :   %add = add i32 %15, %total.0229, !dbg !14999)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd510d220 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@237 (  %add = add i32 %15, %total.0229, !dbg !14999)
+
+=========================GROUP 5 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spi.c', 2861, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spi.c@2861 (__spi_validate :   br i1 %tobool131, label %if.end133, label %cleanup303, !dbg !14963)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd59543e0 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@235 (  store i32 %15, i32* %len2, align 8, !dbg !14998)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3104 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14842)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2861 (  %31 = load i32, i32* %18, align 8, !dbg !14960)
+private/msm-google/drivers/spi/spi.c@2861 (  %rem = and i32 %31, %32, !dbg !14962)
+private/msm-google/drivers/spi/spi.c@2861 (  %tobool131 = icmp eq i32 %rem, 0, !dbg !14962)
+private/msm-google/drivers/spi/spi.c@2861 (  br i1 %tobool131, label %if.end133, label %cleanup303, !dbg !14963)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spi.c@2861 (__spi_validate :   br i1 %tobool131, label %if.end133, label %cleanup303, !dbg !14963)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd51481d0 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@235 (  store i32 %15, i32* %len2, align 8, !dbg !14998)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> spi_async_locked -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3129 :   %call64 = call i32 @spi_async_locked(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !15080)
+spi_async_locked (private/msm-google/drivers/spi/spi.c@3009)
+----> (private/msm-google/drivers/spi/spi.c@3013 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #10, !dbg !14806)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2861 (  %31 = load i32, i32* %18, align 8, !dbg !14960)
+private/msm-google/drivers/spi/spi.c@2861 (  %rem = and i32 %31, %32, !dbg !14962)
+private/msm-google/drivers/spi/spi.c@2861 (  %tobool131 = icmp eq i32 %rem, 0, !dbg !14962)
+private/msm-google/drivers/spi/spi.c@2861 (  br i1 %tobool131, label %if.end133, label %cleanup303, !dbg !14963)
+
+=========================GROUP 6 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 303, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@303 (spidev_message :   br i1 %cmp3.i.i186, label %if.then.i.i188, label %if.end12.i.i192, !dbg !15278, !prof !15058)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd6301eb0 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@305 (  %52 = load i32, i32* %len86, align 8, !dbg !15264)
+private/msm-google/drivers/spi/spidev.c@305 (  %conv87 = zext i32 %52 to i64, !dbg !15265)
+private/msm-google/drivers/spi/spidev.c@303 (  %cmp3.i.i186 = icmp ult i64 %conv2.i.i185, %conv87, !dbg !15277)
+private/msm-google/drivers/spi/spidev.c@303 (  br i1 %cmp3.i.i186, label %if.then.i.i188, label %if.end12.i.i192, !dbg !15278, !prof !15058)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@303 (spidev_message :   br i1 %tobool89, label %if.end91, label %done, !dbg !15328)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd5bc4400 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@305 (  %52 = load i32, i32* %len86, align 8, !dbg !15264)
+private/msm-google/drivers/spi/spidev.c@305 (  %conv87 = zext i32 %52 to i64, !dbg !15265)
+private/msm-google/drivers/spi/spidev.c@303 (  %n.addr.0.i200 = phi i64 [ %call3.i.i, %if.then.i6.i199 ], [ %conv87, %if.then.i198 ])
+private/msm-google/drivers/spi/spidev.c@303 (  %tobool89 = icmp eq i64 %n.addr.0.i200, 0, !dbg !15327)
+private/msm-google/drivers/spi/spidev.c@303 (  br i1 %tobool89, label %if.end91, label %done, !dbg !15328)
+
+=========================GROUP 7 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spi.c', 2705, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spi.c@2705 (__spi_validate_bits_per_word :   %sub = add nuw nsw i64 %conv, 4294967295, !dbg !14810)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4de2a20 tf: 0x55fbd4d3f610 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@276 (  %42 = load i8, i8* %bits_per_word, align 2, !dbg !15182)
+private/msm-google/drivers/spi/spidev.c@276 (  store i8 %42, i8* %bits_per_word62, align 1, !dbg !15184)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3104 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14842)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2846 (  %30 = load i8, i8* %21, align 1, !dbg !14953)
+private/msm-google/drivers/spi/spi.c@2846 (  %call113 = call fastcc i32 @__spi_validate_bits_per_word(%struct.spi_controller* %0, i8 %30) #10, !dbg !14955)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> __spi_validate -> __spi_validate_bits_per_word
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3104 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14842)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+----> (private/msm-google/drivers/spi/spi.c@2846 :   %call113 = call fastcc i32 @__spi_validate_bits_per_word(%struct.spi_controller* %0, i8 %30) #10, !dbg !14955)
+__spi_validate_bits_per_word (private/msm-google/drivers/spi/spi.c@2701)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2703 (  %conv = zext i8 %bits_per_word to i64, !dbg !14807)
+private/msm-google/drivers/spi/spi.c@2705 (  %sub = add nuw nsw i64 %conv, 4294967295, !dbg !14810)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spi.c@2705 (__spi_validate_bits_per_word :   %sub = add nuw nsw i64 %conv, 4294967295, !dbg !14810)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4de2a20 tf: 0x55fbd4d05a30 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@276 (  %42 = load i8, i8* %bits_per_word, align 2, !dbg !15182)
+private/msm-google/drivers/spi/spidev.c@276 (  store i8 %42, i8* %bits_per_word62, align 1, !dbg !15184)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> spi_async_locked -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3129 :   %call64 = call i32 @spi_async_locked(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !15080)
+spi_async_locked (private/msm-google/drivers/spi/spi.c@3009)
+----> (private/msm-google/drivers/spi/spi.c@3013 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #10, !dbg !14806)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2846 (  %30 = load i8, i8* %21, align 1, !dbg !14953)
+private/msm-google/drivers/spi/spi.c@2846 (  %call113 = call fastcc i32 @__spi_validate_bits_per_word(%struct.spi_controller* %0, i8 %30) #10, !dbg !14955)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> spi_async_locked -> __spi_validate -> __spi_validate_bits_per_word
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3129 :   %call64 = call i32 @spi_async_locked(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !15080)
+spi_async_locked (private/msm-google/drivers/spi/spi.c@3009)
+----> (private/msm-google/drivers/spi/spi.c@3013 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #10, !dbg !14806)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+----> (private/msm-google/drivers/spi/spi.c@2846 :   %call113 = call fastcc i32 @__spi_validate_bits_per_word(%struct.spi_controller* %0, i8 %30) #10, !dbg !14955)
+__spi_validate_bits_per_word (private/msm-google/drivers/spi/spi.c@2701)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2703 (  %conv = zext i8 %bits_per_word to i64, !dbg !14807)
+private/msm-google/drivers/spi/spi.c@2705 (  %sub = add nuw nsw i64 %conv, 4294967295, !dbg !14810)
+
+=========================GROUP 8 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spidev.c', 250, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/spi/spidev.c', 251, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spidev.c@251 (spidev_message :   br i1 %cmp16, label %done, label %if.end19, !dbg !15011)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd51699f0 (3)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@250 (  %add15 = add i32 %15, %rx_total.0231, !dbg !15006)
+private/msm-google/drivers/spi/spidev.c@251 (  %cmp16 = icmp ugt i32 %add15, %19, !dbg !15010)
+private/msm-google/drivers/spi/spidev.c@251 (  br i1 %cmp16, label %done, label %if.end19, !dbg !15011)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/spi/spidev.c@250 (spidev_message :   %add15 = add i32 %15, %rx_total.0231, !dbg !15006)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd4db13c0 tf: 0x55fbd510d220 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@235 (  %15 = load i32, i32* %len, align 8, !dbg !14996)
+private/msm-google/drivers/spi/spidev.c@250 (  %add15 = add i32 %15, %rx_total.0231, !dbg !15006)
+
+=========================GROUP 9 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/spi/spi.c', 2864, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spi.c@2864 (__spi_validate :   br i1 %cmp141, label %cleanup303, label %if.end144, !dbg !14969)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd50a2c50 tf: 0x55fbd4e732d0 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@278 (  %44 = load i32, i32* %speed_hz, align 4, !dbg !15188)
+private/msm-google/drivers/spi/spidev.c@278 (  store i32 %44, i32* %speed_hz64, align 4, !dbg !15190)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3104 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14842)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2864 (  %33 = load i32, i32* %24, align 4, !dbg !14964)
+private/msm-google/drivers/spi/spi.c@2865 (  %cmp141 = icmp ult i32 %33, %34, !dbg !14968)
+private/msm-google/drivers/spi/spi.c@2864 (  br i1 %cmp141, label %cleanup303, label %if.end144, !dbg !14969)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/spi/spi.c@2864 (__spi_validate :   br i1 %cmp141, label %cleanup303, label %if.end144, !dbg !14969)
+********Trace 0(1)********
+#####CTX##### spidev_ioctl -> spidev_message
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55fbd50a2c50 tf: 0x55fbd4b4f170 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/spi/spidev.c@278 (  %44 = load i32, i32* %speed_hz, align 4, !dbg !15188)
+private/msm-google/drivers/spi/spidev.c@278 (  store i32 %44, i32* %speed_hz64, align 4, !dbg !15190)
+#####CTX##### spidev_ioctl -> spidev_message -> spidev_sync -> spi_sync -> __spi_sync -> spi_async_locked -> __spi_validate
+spidev_ioctl (private/msm-google/drivers/spi/spidev.c@343)
+----> (private/msm-google/drivers/spi/spidev.c@478 :   %call344 = call fastcc i32 @spidev_message(%struct.spidev_data* %2, %struct.spi_ioc_transfer* nonnull %call335, i32 %116) #12, !dbg !15307)
+spidev_message (private/msm-google/drivers/spi/spidev.c@207)
+----> (private/msm-google/drivers/spi/spidev.c@295 :   %call72 = call fastcc i64 @spidev_sync(%struct.spidev_data* %spidev, %struct.spi_message.276* nonnull %msg) #12, !dbg !15248)
+spidev_sync (private/msm-google/drivers/spi/spidev.c@105)
+----> (private/msm-google/drivers/spi/spidev.c@112 :   %call = call i32 bitcast (i32 (%struct.spi_device*, %struct.spi_message*)* @spi_sync to i32 (%struct.spi_device.286*, %struct.spi_message.276*)*)(%struct.spi_device.286* nonnull %0, %struct.spi_message.276* %message) #11, !dbg !14820)
+spi_sync (private/msm-google/drivers/spi/spi.c@3176)
+----> (private/msm-google/drivers/spi/spi.c@3177 :   %call = call fastcc i32 @__spi_sync(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !14801)
+__spi_sync (private/msm-google/drivers/spi/spi.c@3097)
+----> (private/msm-google/drivers/spi/spi.c@3129 :   %call64 = call i32 @spi_async_locked(%struct.spi_device* %spi, %struct.spi_message* %message) #11, !dbg !15080)
+spi_async_locked (private/msm-google/drivers/spi/spi.c@3009)
+----> (private/msm-google/drivers/spi/spi.c@3013 :   %call = call fastcc i32 @__spi_validate(%struct.spi_device* %spi, %struct.spi_message* %message) #10, !dbg !14806)
+__spi_validate (private/msm-google/drivers/spi/spi.c@2800)
+#####INSTS#####
+private/msm-google/drivers/spi/spi.c@2864 (  %33 = load i32, i32* %24, align 4, !dbg !14964)
+private/msm-google/drivers/spi/spi.c@2865 (  %cmp141 = icmp ult i32 %33, %34, !dbg !14968)
+private/msm-google/drivers/spi/spi.c@2864 (  br i1 %cmp141, label %cleanup303, label %if.end144, !dbg !14969)
+

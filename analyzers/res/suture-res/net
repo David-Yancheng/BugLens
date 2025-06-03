@@ -1,0 +1,69 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/net/ppp/ppp_generic.c', 2957, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (find_comp_entry :   br i1 %cmp6, label %cleanup, label %do.body17, !dbg !310528)
+********Trace 0(1)********
+#####CTX##### ppp_ioctl -> ppp_set_compress
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e9ac090900 tf: 0x55e9b034b940 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %23 = load i8, i8* %1, align 4, !dbg !310693)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %conv23 = zext i8 %23 to i32, !dbg !310693)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %call24 = call fastcc %struct.compressor* @find_compressor(i32 %conv23) #18, !dbg !310693)
+#####CTX##### ppp_ioctl -> ppp_set_compress -> find_compressor
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@2777 :   %call24 = call fastcc %struct.compressor* @find_compressor(i32 %conv23) #18, !dbg !310693)
+find_compressor (private/msm-google/drivers/net/ppp/ppp_generic.c@3007)
+#####INSTS#####
+private/msm-google/drivers/net/ppp/ppp_generic.c@3008 (  %call = call fastcc %struct.compressor_entry* @find_comp_entry(i32 %type) #18, !dbg !310520)
+#####CTX##### ppp_ioctl -> ppp_set_compress -> find_compressor -> find_comp_entry
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@2777 :   %call24 = call fastcc %struct.compressor* @find_compressor(i32 %conv23) #18, !dbg !310693)
+find_compressor (private/msm-google/drivers/net/ppp/ppp_generic.c@3007)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@3008 :   %call = call fastcc %struct.compressor_entry* @find_comp_entry(i32 %type) #18, !dbg !310520)
+find_comp_entry (private/msm-google/drivers/net/ppp/ppp_generic.c@2956)
+#####INSTS#####
+private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (  %cmp6 = icmp eq i32 %1, %proto, !dbg !310527)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (  br i1 %cmp6, label %cleanup, label %do.body17, !dbg !310528)
+
+++++++++++++++++WARN 1 (1 - 1)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (find_comp_entry :   br i1 %cmp6, label %cleanup, label %do.body17, !dbg !310528)
+********Trace 0(1)********
+#####CTX##### ppp_ioctl -> ppp_set_compress
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e9ac090900 tf: 0x55e9b03e69f0 (5)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %25 = load i8, i8* %1, align 4, !dbg !310693)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %conv30 = zext i8 %25 to i32, !dbg !310693)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2777 (  %call31 = call fastcc %struct.compressor* @find_compressor(i32 %conv30) #18, !dbg !310693)
+#####CTX##### ppp_ioctl -> ppp_set_compress -> find_compressor
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@2777 :   %call31 = call fastcc %struct.compressor* @find_compressor(i32 %conv30) #18, !dbg !310693)
+find_compressor (private/msm-google/drivers/net/ppp/ppp_generic.c@3007)
+#####INSTS#####
+private/msm-google/drivers/net/ppp/ppp_generic.c@3008 (  %call = call fastcc %struct.compressor_entry* @find_comp_entry(i32 %type) #18, !dbg !310520)
+#####CTX##### ppp_ioctl -> ppp_set_compress -> find_compressor -> find_comp_entry
+ppp_ioctl (private/msm-google/drivers/net/ppp/ppp_generic.c@584)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@702 :   %call186 = call fastcc i32 @ppp_set_compress(%struct.ppp* %31, i64 %arg) #18, !dbg !310983)
+ppp_set_compress (private/msm-google/drivers/net/ppp/ppp_generic.c@2757)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@2777 :   %call31 = call fastcc %struct.compressor* @find_compressor(i32 %conv30) #18, !dbg !310693)
+find_compressor (private/msm-google/drivers/net/ppp/ppp_generic.c@3007)
+----> (private/msm-google/drivers/net/ppp/ppp_generic.c@3008 :   %call = call fastcc %struct.compressor_entry* @find_comp_entry(i32 %type) #18, !dbg !310520)
+find_comp_entry (private/msm-google/drivers/net/ppp/ppp_generic.c@2956)
+#####INSTS#####
+private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (  %cmp6 = icmp eq i32 %1, %proto, !dbg !310527)
+private/msm-google/drivers/net/ppp/ppp_generic.c@2957 (  br i1 %cmp6, label %cleanup, label %do.body17, !dbg !310528)
+

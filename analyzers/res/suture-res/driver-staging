@@ -1,0 +1,1443 @@
+=========================GROUP 0 (3 - 3)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 498, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (3 - 3)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@498 (ashmem_shrink_scan :   %sub.i = add i64 %add.i2.i, %14, !dbg !67266)
+********Trace 0(3)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+#####CTX##### ashmem_ioctl -> ashmem_shrink_scan
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@836 :   %call20 = call i64 @ashmem_shrink_scan(%struct.shrinker* nonnull @ashmem_shrinker, %struct.shrink_control* nonnull %sc) #11, !dbg !67191)
+ashmem_shrink_scan (private/msm-google/drivers/staging/android/ashmem.c@484)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1d36f8a20 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@498 (  %14 = load i64, i64* @lru_count, align 8, !dbg !67266)
+private/msm-google/drivers/staging/android/ashmem.c@498 (  %sub.i = add i64 %add.i2.i, %14, !dbg !67266)
+
+=========================GROUP 1 (2 - 3)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 200, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (3 - 3)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i = add i64 %add.i.i, %21, !dbg !67276)
+********Trace 0(3)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+----> (private/msm-google/drivers/staging/android/ashmem.c@717 :   %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1d3582890 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %21 = load i64, i64* @lru_count, align 8, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i = add i64 %add.i.i, %21, !dbg !67276)
+
+++++++++++++++++WARN 1 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d37b1f40 (16)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@677 (  %add48 = add nuw i64 %pgend, 1, !dbg !67297)
+private/msm-google/drivers/staging/android/ashmem.c@676 (  %call50 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0157.le, i32 %8, i64 %add48, i64 %12) #11, !dbg !67298)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+----> (private/msm-google/drivers/staging/android/ashmem.c@676 :   %call50 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0157.le, i32 %8, i64 %add48, i64 %12) #11, !dbg !67298)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@193 (  store i64 %start, i64* %2, align 8, !dbg !67171)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %20 = load i64, i64* %19, align 8, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+
+++++++++++++++++WARN 2 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i = add i64 %add.i.i, %21, !dbg !67276)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d37773a0 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@677 (  %add48 = add nuw i64 %pgend, 1, !dbg !67297)
+private/msm-google/drivers/staging/android/ashmem.c@676 (  %call50 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0157.le, i32 %8, i64 %add48, i64 %12) #11, !dbg !67298)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+----> (private/msm-google/drivers/staging/android/ashmem.c@676 :   %call50 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0157.le, i32 %8, i64 %add48, i64 %12) #11, !dbg !67298)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@193 (  store i64 %start, i64* %2, align 8, !dbg !67171)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %20 = load i64, i64* %19, align 8, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i = add i64 %add.i.i, %21, !dbg !67276)
+
+++++++++++++++++WARN 3 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %sub.i.i = add i64 %18, 1, !dbg !67274)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d35e6b10 (16)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@780 (  %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@691 (  %pgend.addr.0 = phi i64 [ %pgend, %entry ], [ %cond49, %if.then33 ])
+private/msm-google/drivers/staging/android/ashmem.c@717 (  %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+----> (private/msm-google/drivers/staging/android/ashmem.c@717 :   %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@194 (  store i64 %end, i64* %3, align 8, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %18 = load i64, i64* %17, align 8, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %sub.i.i = add i64 %18, 1, !dbg !67274)
+
+++++++++++++++++WARN 4 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36e4830 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@780 (  %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@691 (  %pgend.addr.0 = phi i64 [ %pgend, %entry ], [ %cond49, %if.then33 ])
+private/msm-google/drivers/staging/android/ashmem.c@717 (  %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+----> (private/msm-google/drivers/staging/android/ashmem.c@717 :   %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@194 (  store i64 %end, i64* %3, align 8, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %18 = load i64, i64* %17, align 8, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %sub.i.i = add i64 %18, 1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+
+++++++++++++++++WARN 5 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i = add i64 %add.i.i, %21, !dbg !67276)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36e4990 (18)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@780 (  %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@691 (  %pgend.addr.0 = phi i64 [ %pgend, %entry ], [ %cond49, %if.then33 ])
+private/msm-google/drivers/staging/android/ashmem.c@717 (  %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+----> (private/msm-google/drivers/staging/android/ashmem.c@717 :   %call71 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0.le119, i32 %purged.0, i64 %pgstart.addr.0, i64 %pgend.addr.0) #11, !dbg !67250)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@194 (  store i64 %end, i64* %3, align 8, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %18 = load i64, i64* %17, align 8, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %sub.i.i = add i64 %18, 1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i.i = sub i64 %sub.i.i, %20, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i = add i64 %add.i.i, %21, !dbg !67276)
+
+++++++++++++++++WARN 6 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@200 (range_alloc :   %add.i = add i64 %add.i.i, %21, !dbg !67276)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin -> range_alloc
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+----> (private/msm-google/drivers/staging/android/ashmem.c@676 :   %call50 = call fastcc i32 @range_alloc(%struct.ashmem_area* %asma, %struct.ashmem_range* %range.0157.le, i32 %8, i64 %add48, i64 %12) #11, !dbg !67298)
+range_alloc (private/msm-google/drivers/staging/android/ashmem.c@188)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1d3776370 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %21 = load i64, i64* @lru_count, align 8, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@200 (  %add.i = add i64 %add.i.i, %21, !dbg !67276)
+
+=========================GROUP 2 (2 - 3)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 735, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (3 - 3)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/staging/android/ashmem.c@735 (ashmem_get_pin_status :   br i1 %cmp.i.i, label %lor.lhs.false.i, label %for.end, !dbg !67199)
+********Trace 0(3)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_get_pin_status
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@783 :   %call77 = call fastcc i32 @ashmem_get_pin_status(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67281)
+ashmem_get_pin_status (private/msm-google/drivers/staging/android/ashmem.c@732)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d3755140 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %5 = load i64, i64* %4, align 8, !dbg !67197)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %cmp.i.i = icmp ugt i64 %5, %pgstart, !dbg !67198)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  br i1 %cmp.i.i, label %lor.lhs.false.i, label %for.end, !dbg !67199)
+
+++++++++++++++++WARN 1 (2 - 2)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/staging/android/ashmem.c@735 (ashmem_get_pin_status :   br i1 %or.cond, label %lor.rhs.i, label %for.end, !dbg !67204)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3590b20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@783 (  %call77 = call fastcc i32 @ashmem_get_pin_status(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67281)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_get_pin_status
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@783 :   %call77 = call fastcc i32 @ashmem_get_pin_status(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67281)
+ashmem_get_pin_status (private/msm-google/drivers/staging/android/ashmem.c@732)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %cmp.i13.i = icmp ugt i64 %5, %pgend, !dbg !67202)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %or.cond = or i1 %cmp1.i15.i, %cmp.i13.i, !dbg !67204)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  br i1 %or.cond, label %lor.rhs.i, label %for.end, !dbg !67204)
+
+++++++++++++++++WARN 2 (2 - 2)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/staging/android/ashmem.c@735 (ashmem_get_pin_status :   br i1 %or.cond43, label %for.end, label %do.body20, !dbg !67214)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d35b7770 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@783 (  %call77 = call fastcc i32 @ashmem_get_pin_status(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67281)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_get_pin_status
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@783 :   %call77 = call fastcc i32 @ashmem_get_pin_status(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67281)
+ashmem_get_pin_status (private/msm-google/drivers/staging/android/ashmem.c@732)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %cmp1.i10.i = icmp ule i64 %3, %pgend, !dbg !67213)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  %or.cond43 = and i1 %cmp1.i10.i, %cmp.i8.i, !dbg !67214)
+private/msm-google/drivers/staging/android/ashmem.c@735 (  br i1 %or.cond43, label %for.end, label %do.body20, !dbg !67214)
+
+=========================GROUP 3 (2 - 3)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 213, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (3 - 3)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@213 (range_del :   %sub.i = add i64 %add.i2.i, %11, !dbg !67253)
+********Trace 0(3)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin -> range_del
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+----> (private/msm-google/drivers/staging/android/ashmem.c@712 :   call fastcc void @range_del(%struct.ashmem_range* %range.0109) #11, !dbg !67248)
+range_del (private/msm-google/drivers/staging/android/ashmem.c@211)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1d35abf30 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@213 (  %11 = load i64, i64* @lru_count, align 8, !dbg !67253)
+private/msm-google/drivers/staging/android/ashmem.c@213 (  %sub.i = add i64 %add.i2.i, %11, !dbg !67253)
+
+++++++++++++++++WARN 1 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@213 (range_del :   %sub.i = add i64 %add.i2.i, %11, !dbg !67253)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin -> range_del
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+----> (private/msm-google/drivers/staging/android/ashmem.c@654 :   call fastcc void @range_del(%struct.ashmem_range* %range.0157) #11, !dbg !67235)
+range_del (private/msm-google/drivers/staging/android/ashmem.c@211)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1d372cfd0 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@213 (  %11 = load i64, i64* @lru_count, align 8, !dbg !67253)
+private/msm-google/drivers/staging/android/ashmem.c@213 (  %sub.i = add i64 %add.i2.i, %11, !dbg !67253)
+
+=========================GROUP 4 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 660, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/staging/android/ashmem.c', 666, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/staging/android/ashmem.c', 678, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@678 (ashmem_pin :   %sub3.i = add i64 %sub9.i, %28, !dbg !67315)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d37d1280 (18)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@678 (  %28 = load i64, i64* @lru_count, align 8, !dbg !67315)
+private/msm-google/drivers/staging/android/ashmem.c@678 (  %sub3.i = add i64 %sub9.i, %28, !dbg !67315)
+
+++++++++++++++++WARN 1 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3760a00 (12)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+
+++++++++++++++++WARN 2 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3712840 (13)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+
+++++++++++++++++WARN 3 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3660970 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+
+++++++++++++++++WARN 4 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a3f80 (17)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1cc0f9210 tf: 0x55e1cfeac220 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %15 = load i64, i64* @lru_count, align 8, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+
+++++++++++++++++WARN 5 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d35aa570 (15)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+
+++++++++++++++++WARN 6 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@660 (ashmem_pin :   %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d370dde0 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@649 (  %6 = load i64, i64* %5, align 8, !dbg !67209)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+
+++++++++++++++++WARN 7 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@666 (ashmem_pin :   %sub3.i123 = add i64 %sub9.i122, %19, !dbg !67293)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d2a7bba0 (18)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub.i12.i131 = sub i64 %16, %pgend, !dbg !67275)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %add.i13.i132 = add i64 %sub.i12.i131, %6, !dbg !67276)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub9.i133 = add i64 %add.i13.i132, %12, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  %sub3.i134 = add i64 %sub9.i133, %15, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %sub3.i134, i64* @lru_count, align 8, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %19 = load i64, i64* @lru_count, align 8, !dbg !67293)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %sub3.i123 = add i64 %sub9.i122, %19, !dbg !67293)
+
+++++++++++++++++WARN 8 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@666 (ashmem_pin :   %add.i13.i121 = add i64 %sub.i12.i120, %6, !dbg !67295)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d370dde0 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@649 (  %6 = load i64, i64* %5, align 8, !dbg !67209)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %add.i13.i121 = add i64 %sub.i12.i120, %6, !dbg !67295)
+
+++++++++++++++++WARN 9 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@666 (ashmem_pin :   %sub9.i122 = sub i64 %add.i13.i121, %10, !dbg !67293)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d35e51a0 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %10 = load i64, i64* %9, align 8, !dbg !67238)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %sub9.i122 = sub i64 %add.i13.i121, %10, !dbg !67293)
+
+++++++++++++++++WARN 10 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@666 (ashmem_pin :   %sub9.i122 = sub i64 %add.i13.i121, %10, !dbg !67293)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d2c40cf0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@649 (  %6 = load i64, i64* %5, align 8, !dbg !67209)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %add.i13.i121 = add i64 %sub.i12.i120, %6, !dbg !67295)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %sub9.i122 = sub i64 %add.i13.i121, %10, !dbg !67293)
+
+++++++++++++++++WARN 11 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@666 (ashmem_pin :   %sub3.i123 = add i64 %sub9.i122, %19, !dbg !67293)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d354bb20 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+private/msm-google/drivers/staging/android/ashmem.c@660 (  store i64 %add, i64* %5, align 8, !dbg !67259)
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d3627dd0 tf: 0x55e1d335f3a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %10 = load i64, i64* %9, align 8, !dbg !67238)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %sub9.i122 = sub i64 %add.i13.i121, %10, !dbg !67293)
+private/msm-google/drivers/staging/android/ashmem.c@666 (  %sub3.i123 = add i64 %sub9.i122, %19, !dbg !67293)
+
+=========================GROUP 5 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 659, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@659 (ashmem_pin :   %add = add i64 %pgend, 1, !dbg !67173)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3760a00 (12)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@659 (  %add = add i64 %pgend, 1, !dbg !67173)
+
+=========================GROUP 6 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 677, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@677 (ashmem_pin :   %add48 = add nuw i64 %pgend, 1, !dbg !67297)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3760a00 (12)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@677 (  %add48 = add nuw i64 %pgend, 1, !dbg !67297)
+
+=========================GROUP 7 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 761, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/staging/android/ashmem.c', 769, [u'IntegerOverflowDetector'])
+(u'private/msm-google/drivers/staging/android/ashmem.c', 773, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@769 (ashmem_pin_unpin :   %add49 = add i64 %19, 4095, !dbg !67268)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d320aed0 (1)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@769 (  %19 = load i64, i64* %size48, align 8, !dbg !67268)
+private/msm-google/drivers/staging/android/ashmem.c@769 (  %add49 = add i64 %19, 4095, !dbg !67268)
+
+++++++++++++++++WARN 1 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@769 (ashmem_pin_unpin :   %add53 = add i32 %17, %16, !dbg !67268)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3557590 (7)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@769 (  %add53 = add i32 %17, %16, !dbg !67268)
+
+++++++++++++++++WARN 2 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@761 (ashmem_pin_unpin :   %14 = add i32 %13, 4095, !dbg !67258)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36bfdc0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+
+++++++++++++++++WARN 3 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@761 (ashmem_pin_unpin :   %conv18 = sub i32 %15, %12, !dbg !67258)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36eebb0 (4)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+
+++++++++++++++++WARN 4 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@773 (ashmem_pin_unpin :   %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3667ab0 (8)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+
+++++++++++++++++WARN 5 (2 - 2)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/staging/android/ashmem.c@773 (ashmem_pin_unpin :   %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3603ca0 (10)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+
+=========================GROUP 8 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 706, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/staging/android/ashmem.c@706 (ashmem_unpin :   br i1 %cmp1.i, label %if.then33, label %cleanup, !dbg !67211)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d3763b60 (14)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@780 (  %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@780 :   %call75 = call fastcc i32 @ashmem_unpin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67279)
+ashmem_unpin (private/msm-google/drivers/staging/android/ashmem.c@697)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@691 (  %pgend.addr.0 = phi i64 [ %pgend, %entry ], [ %cond49, %if.then33 ])
+private/msm-google/drivers/staging/android/ashmem.c@706 (  %cmp1.i = icmp ult i64 %4, %pgend.addr.0, !dbg !67210)
+private/msm-google/drivers/staging/android/ashmem.c@706 (  br i1 %cmp1.i, label %if.then33, label %cleanup, !dbg !67211)
+
+=========================GROUP 9 (2 - 2)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/staging/android/ashmem.c', 665, [u'TaintedLoopBoundDetector'])
+######################
+
+++++++++++++++++WARN 0 (2 - 2)++++++++++++++++
+TaintedLoopBoundDetector says: private/msm-google/drivers/staging/android/ashmem.c@665 (ashmem_pin :   br i1 %cmp41, label %if.end46, label %if.then43, !dbg !67279)
+********Trace 0(2)********
+#####CTX##### ashmem_ioctl
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2dc4820 tf: 0x55e1d36a24a0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@793 (  %sc = alloca %struct.shrink_control, align 8)
+private/msm-google/drivers/staging/android/ashmem.c@810 (  store i64 %arg, i64* %size, align 8, !dbg !67170)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x55e1d2cc4d20 tf: 0x55e1d36a4260 (13)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %11 = load i64, i64* %size, align 8, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %13 = trunc i64 %11 to i32, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %14 = add i32 %13, 4095, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %15 = and i32 %14, -4096, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  %conv18 = sub i32 %15, %12, !dbg !67258)
+private/msm-google/drivers/staging/android/ashmem.c@761 (  store i32 %conv18, i32* %len, align 4, !dbg !67260)
+private/msm-google/drivers/staging/android/ashmem.c@763 (  %17 = load i32, i32* %len, align 4, !dbg !67262)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %21 = lshr i32 %17, 12, !dbg !67272)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %narrow = add nuw nsw i32 %21, %20, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %add71 = zext i32 %narrow to i64, !dbg !67273)
+private/msm-google/drivers/staging/android/ashmem.c@773 (  %sub72 = add nsw i64 %add71, -1, !dbg !67274)
+private/msm-google/drivers/staging/android/ashmem.c@777 (  %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+#####CTX##### ashmem_ioctl -> ashmem_pin_unpin -> ashmem_pin
+ashmem_ioctl (private/msm-google/drivers/staging/android/ashmem.c@793)
+----> (private/msm-google/drivers/staging/android/ashmem.c@826 :   %call14 = call fastcc i32 @ashmem_pin_unpin(%struct.ashmem_area* %1, i64 %conv13, i8* %7) #11, !dbg !67183)
+ashmem_pin_unpin (private/msm-google/drivers/staging/android/ashmem.c@744)
+----> (private/msm-google/drivers/staging/android/ashmem.c@777 :   %call73 = call fastcc i32 @ashmem_pin(%struct.ashmem_area* %asma, i64 %div, i64 %sub72) #13, !dbg !67276)
+ashmem_pin (private/msm-google/drivers/staging/android/ashmem.c@629)
+#####INSTS#####
+private/msm-google/drivers/staging/android/ashmem.c@665 (  %cmp41 = icmp ugt i64 %12, %pgend, !dbg !67278)
+private/msm-google/drivers/staging/android/ashmem.c@665 (  br i1 %cmp41, label %if.end46, label %if.then43, !dbg !67279)
+

@@ -1,0 +1,21 @@
+=========================GROUP 0 (1 - 1)=========================
+#####Warned Insts#####
+(u'private/msm-google/drivers/block/loop.c', 1368, [u'IntegerOverflowDetector'])
+######################
+
+++++++++++++++++WARN 0 (1 - 1)++++++++++++++++
+IntegerOverflowDetector says: private/msm-google/drivers/block/loop.c@1368 (loop_set_block_size :   %arg.off = add i64 %arg, -512, !dbg !17846)
+********Trace 0(1)********
+#####CTX##### lo_ioctl
+lo_ioctl (private/msm-google/drivers/block/loop.c@1401)
+#####INSTS#####
+>>>>>>>>>>>>>>>>>>tag: 0x558bb1d796e0 tf: 0x558bb1dc4da0 (2)>>>>>>>>>>>>>>>>>>
+private/msm-google/drivers/block/loop.c@1401 (  %bd_disk = getelementptr inbounds %struct.block_device, %struct.block_device* %bdev, i64 0, i32 16, !dbg !17843)
+private/msm-google/drivers/block/loop.c@1451 (  %call51 = call fastcc i32 @loop_set_block_size(%struct.loop_device* %2, i64 %arg) #11, !dbg !17899)
+#####CTX##### lo_ioctl -> loop_set_block_size
+lo_ioctl (private/msm-google/drivers/block/loop.c@1401)
+----> (private/msm-google/drivers/block/loop.c@1451 :   %call51 = call fastcc i32 @loop_set_block_size(%struct.loop_device* %2, i64 %arg) #11, !dbg !17899)
+loop_set_block_size (private/msm-google/drivers/block/loop.c@1365)
+#####INSTS#####
+private/msm-google/drivers/block/loop.c@1368 (  %arg.off = add i64 %arg, -512, !dbg !17846)
+
