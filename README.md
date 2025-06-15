@@ -60,3 +60,26 @@ DB_CONFIG = {
 }
 
 ```
+
+### API Keys
+
+BugLens requires multiple API keys to work with different LLMs. It will automatically load the keys from the environment variables and files. Used in 
+`prompts/call_api.py`:
+
+```python
+api_key = "../openai.key"
+if 'OPENAI_API_KEY' not in os.environ:
+    if os.path.exists(api_key):
+        key_chain = open(api_key, 'r').read().splitlines()[0]
+        os.environ['OPENAI_API_KEY'] = key_chain
+```
+
+You will need to set the following keys:
+
+- `OPENAI_API_KEY` (openai.key)
+- `DEEPSEEK_API_KEY` (deepseek.key)
+- `GEMINI_API_KEY` (gemini.key)
+- `ANTHROPIC_API_KEY` (claude.key)
+- `OPENROUTER_API_KEY` (openrouter.key)
+
+You can set dummy keys for the ones you don't want to use (or comment out the code that uses them).
