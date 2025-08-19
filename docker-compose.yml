@@ -39,6 +39,13 @@ services:
       FLASK_APP: flask_app.py
       FLASK_ENV: development
       FLASK_DEBUG: "1"
+      
+      # API Keys (dummy values for now)
+      OPENAI_API_KEY: dummy-openai-key
+      DEEPSEEK_API_KEY: dummy-deepseek-key
+      GEMINI_API_KEY: dummy-gemini-key
+      ANTHROPIC_API_KEY: dummy-claude-key
+      OPENROUTER_API_KEY: dummy-openrouter-key
     working_dir: /opt/BugLens/app/demo
     # Use Flask's dev server with reloader
     command: ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000", "--reload"]
