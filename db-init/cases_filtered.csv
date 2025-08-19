@@ -1,0 +1,753 @@
+var_name,analysis_result,case_id,sanitize_result,model,required_sanitizer,detected_sanitizer
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (length != 1 || index_offset != 0)</sink>",not_a_bug,msm-sound:0074,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>mi2s_tx_cfg[idx].channels = ucontrol->value.enumerated.item[0] + 1</sink>",not_a_bug,msm-sound:0076,not_a_bug,o3-mini,,
+"<tainted_var>samples</tainted_var>
+  <sink>return samples * phys_width / 8</sink>","<tainted_var>samples</tainted_var>
+  <vulns>
+    <vuln>
+      <type>memory_bug</type>
+      <desc>The tainted variable is used in arithmetic to compute a byte size. If samples * phys_width exceeds the maximum representable value (SIZE_MAX), an integer overflow will occur. In practice this may lead to miscomputed sizes that, when used in subsequent memory operations (such as buffer allocation or copy operations), can result in buffer overflows or out‐of‐bound memory accesses.</desc>
+      <bug_condition>samples > SIZE_MAX / phys_width</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0083,still_a_bug,o3-mini,,
+"<tainted_var>channel (from ucontrol->value.integer.value[1])</tainted_var>
+  <sink>slot_offset[0] = offset_val</sink>","<tainted_var>tainted_var</tainted_var>
+  <vulns>
+    <vuln>
+      <type>arbitrary_memory_access</type>
+      <desc>Using the tainted variable (channel) to index into the tdm_cfg array can lead to a pointer (slot_offset) that is out-of-bound. This tainted pointer is then used for writing (slot_offset[0] = offset_val), potentially resulting in an arbitrary memory write in kernel space.</desc>
+      <bug_condition>channel (or interface) value is set out-of-bound, bypassing the intended range, causing slot_offset to reference invalid memory</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0088,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>val = val + opt->start;</sink>",not_a_bug,msm-sound:0078,not_a_bug,o3-mini,,
+"<tainted_var>mi2s_rx_cfg[idx].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = mi2s_rx_cfg[idx].channels - 1</sink>","<tainted_var>mi2s_rx_cfg[idx].channels</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Subtracting 1 from the tainted variable may yield a negative value; if mi2s_rx_cfg[idx].channels is less than 1, the resulting value (-1) could be used where only non-negative enum indexes are valid, potentially leading to an out-of-bound access.</desc>
+      <bug_condition>mi2s_rx_cfg[idx].channels < 1</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0021,eliminated,o3-mini,,
+"<tainted_var>msm_vi_feed_tx_ch</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = msm_vi_feed_tx_ch - 1;</sink>",not_a_bug,msm-sound:0014,not_a_bug,o3-mini,,
+"<tainted_var>pahu_mad_input = ucontrol->value.integer.value[0]</tainted_var>
+  <sink>strnstr(pahu_conn_mad_text[pahu_mad_input], ""NOTUSED"", sizeof(""NOTUSED""))</sink>",not_a_bug,msm-sound:0043,not_a_bug,o3-mini,,
+"<tainted_var>packed_data_size</tainted_var>
+  <sink>params_length += packed_data_size</sink>","<tainted_var>packed_data_size</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>The arithmetic addition (params_length += packed_data_size) can overflow, resulting in an incorrect, truncated params_length value. This value is later used as the length in q6asm_set_pp_params, potentially leading to out‐of-bound memory access or buffer overflow.</desc>
+      <bug_condition>params_length + packed_data_size > UINT32_MAX</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0055,eliminated,o3-mini,,
+"<tainted_var>NOT SUPPORTED</tainted_var>
+  <sink>NOT SUPPORTED</sink>","<vuln>false_alarm</vuln>
+  <tainted_var>tainted_var</tainted_var>
+  <reason>The tainted variable is only used in a benign comparison within a loop bounded by a fixed constant (XX_ARRAY_SIZE), so it does not affect control flow or cause unsafe behavior.</reason>",msm-sound:0122,not_exploitable,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>proxy_rx_cfg.channels = ucontrol->value.integer.value[0] + 2;</sink>",not_a_bug,msm-sound:0051,not_a_bug,o3-mini,,
+"<tainted_var>val = ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>val_org = val - 2</sink>",not_a_bug,msm-sound:0112,not_a_bug,o3-mini,,
+"<tainted_var>ginfo->clients</tainted_var>
+  <sink>ginfo->clients++</sink>",not_a_bug,msm-sound:0113,not_a_bug,o3-mini,,
+"<tainted_var>app_type</tainted_var>
+  <sink>if (app_type_cfg[idx].app_type == app_type)</sink>",not_a_bug,msm-sound:0006,not_a_bug,o3-mini,,
+"<tainted_var>tdm_rx_cfg[port.mode][port.channel].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = tdm_rx_cfg[port.mode][port.channel].channels - 1</sink>",not_a_bug,msm-sound:0009,not_a_bug,o3-mini,,
+"<tainted_var>usb_tx_cfg.channels</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = usb_tx_cfg.channels - 1</sink>",not_a_bug,msm-sound:0010,not_a_bug,o3-mini,,
+"<tainted_var>tx_num</tainted_var>
+  <sink>for (i = 0; i < tx_num; i++)</sink>","<tainted_var>tx_num</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>tx_num is used as the loop bound when iterating over dai_data->sh_ch. If an attacker sets tx_num greater than the number of valid channels (i.e., greater than dai_drv->capture.channels_max), the loop will write past the intended memory, leading to a potential out-of-bound access.</desc>
+      <bug_condition>tx_num > dai_drv->capture.channels_max</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0018,eliminated,o3-mini,,
+"<tainted_var>ext_disp_rx_cfg[idx].channels</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = ext_disp_rx_cfg[idx].channels - 2</sink>",not_a_bug,msm-sound:0023,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>slim_rx_cfg[ch_num].channels = ucontrol->value.enumerated.item[0] + 1</sink>",not_a_bug,msm-sound:0033,not_a_bug,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (file && vd->owner && vd->owner != file)</sink>","<tainted_var>index_offset</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>index_offset is used to index the kctl->vd array without any bounds checking, and then dereferenced (vd->owner). If index_offset is not within the valid range of the array, this leads directly to an out-of-bound access.</desc>
+      <bug_condition>index_offset ≥ (number of elements in kctl->vd)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0034,eliminated,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (length != 1 || index_offset != 0)</sink>",not_a_bug,msm-sound:0036,not_a_bug,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (length != 1 || index_offset != 0)</sink>",not_a_bug,msm-sound:0038,not_a_bug,o3-mini,,
+"<tainted_var>item</tainted_var>
+  <sink>e->values[item] == MSM_BACKEND_DAI_MAX</sink>","<tainted_var>item</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable ""item"" is used to index into the array e->values without a lower-bound check. Thus, if ""item"" is negative, it will result in an out-of-bound access.</desc>
+      <bug_condition>item &lt; 0</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0030,eliminated,o3-mini,,
+"<tainted_var>data->event_type</tainted_var>
+  <sink>hdr.opcode = adsp_reg_event_opcode[data->event_type]</sink>",not_a_bug,msm-sound:0090,not_a_bug,o3-mini,,
+"<tainted_var>id->index</tainted_var>
+  <sink>if (kctl->id.index + kctl->count <= id->index)</sink>",not_a_bug,msm-sound:0109,not_a_bug,o3-mini,,
+"<tainted_var>x</tainted_var>
+  <sink>x &= (x - 1)</sink>",not_a_bug,msm-sound:0060,not_a_bug,o3-mini,,
+"<tainted_var>num_app_types</tainted_var>
+  <sink>for (j = 0; j < num_app_types; j++)</sink>","<tainted_var>num_app_types</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using num_app_types as the loop bound to index into a fixed-size array (app_type_cfg) can lead to an out-of-bound access if num_app_types exceeds MAX_APP_TYPES.</desc>
+      <bug_condition>num_app_types &gt; MAX_APP_TYPES</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0075,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index</tainted_var>
+  <sink>store->val[b_idx][p_idx][index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an index to access a multi-dimensional array (store->val[b_idx][p_idx][index]) without bounds checking.</desc>
+      <bug_condition>ucontrol->id.index is greater than or equal to the valid size of the third array dimension</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0080,still_a_bug,o3-mini,,
+"<tainted_var>NOT SUPPORTED</tainted_var>
+  <sink>NOT SUPPORTED</sink>","<vuln>false_alarm</vuln>
+  <reason>The snippet provided is a placeholder message from the TaintedPointerDereferenceChecker (“I am sorry, but currently I do not support this case”), so it does not contain an actual code pattern that could lead to a vulnerability.</reason>",msm-sound:0081,not_exploitable,o3-mini,,
+"<tainted_var>packed_data_size</tainted_var>
+  <sink>params_length += packed_data_size</sink>","<tainted_var>packed_data_size</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>The tainted packed_data_size is added to params_length without checking for integer overflow. An overflow here may cause params_length to wrap around to a lower value, leading to subsequent memory operations (such as copying or access) using an incorrect, undersized length and resulting in a buffer overflow or out-of-bound memory access.</desc>
+      <bug_condition>packed_data_size > (UINT32_MAX - params_length)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0086,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[i + 1]</tainted_var>
+  <sink>if (channel_map[i] > PCM_MAX_CHMAP_ID)</sink>",not_a_bug,msm-sound:0114,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>e->values[item]</sink>","<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used to index into e->values. Even though there is a check (item < e->items), per our guidelines we ignore such checks; hence if an attacker supplies a controlled value that passes the check but leads e->values[item] to be used unsafely (e.g., later used to index into msm_bedais), it may cause an out-of-bound memory access.</desc>
+      <bug_condition>Attacker-controlled ucontrol->value.enumerated.item[0] leads to an index (item) that, while less than e->items, results in an invalid dereference of e->values[item].</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0052,still_a_bug,o3-mini,,
+"<tainted_var>proxy_rx_cfg.channels</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = proxy_rx_cfg.channels - 2</sink>",not_a_bug,msm-sound:0013,not_a_bug,o3-mini,,
+"<tainted_var>key</tainted_var>
+  <sink>if (metainfo->nKey != key)</sink>",not_a_bug,msm-sound:0097,not_a_bug,o3-mini,,
+"<tainted_var>tx_num</tainted_var>
+  <sink>for (i = tx_num; i < AFE_PORT_MAX_AUDIO_CHAN_CNT; i++)</sink>",not_a_bug,msm-sound:0011,not_a_bug,o3-mini,,
+"<tainted_var>usb_rx_cfg.channels</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = usb_rx_cfg.channels - 1</sink>",not_a_bug,msm-sound:0020,not_a_bug,o3-mini,,
+"<tainted_var>tdm_rx_cfg[port.mode][port.channel].channels</tainted_var>
+  <sink>pr_debug(""%s: tdm_rx_ch = %d, item = %d\n"", __func__, tdm_rx_cfg[port.mode][port.channel].channels - 1, ucontrol->value.enumerated.item[0])</sink>",not_a_bug,msm-sound:0025,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[1]</tainted_var>
+  <sink>max - ucontrol->value.integer.value[1]</sink>",not_a_bug,msm-sound:0120,not_a_bug,o3-mini,,
+"<tainted_var>val (initialized from ucontrol->value.enumerated.item[0])</tainted_var>
+  <sink>snd_soc_update_bits(codec, IAXXX_PWR_MGMT_SYS_CLK_CTRL_ADDR, IAXXX_PWR_MGMT_SYS_CLK_CTRL_APLL_OUT_FREQ_MASK, (val - 1) << IAXXX_PWR_MGMT_SYS_CLK_CTRL_APLL_OUT_FREQ_POS)</sink>",not_a_bug,msm-sound:0124,not_a_bug,o3-mini,,
+"<tainted_var>NOT SUPPORTED</tainted_var>
+  <sink>IAXXX_PCM_PORT_WORD_LEN_SET_GET(portd, PCM_PORTD)</sink>","<vuln>false_alarm</vuln>
+  <tainted_var>tainted_var</tainted_var>
+  <reason>The snippet from sound/soc/codecs/adnc/iaxxx-codec.c is not supported by our tool, so the flagged case is treated as a false alarm.</reason>",msm-sound:0042,not_exploitable,o3-mini,,
+"<tainted_var>tavil_mad_input (initialized from ucontrol->value.integer.value[0])</tainted_var>
+  <sink>mad_input_widget = tavil_conn_mad_text[tavil_mad_input]</sink>","<tainted_var>tavil_mad_input</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted tavil_mad_input is used as an array index for tavil_conn_mad_text. Even though there is an explicit check, per our threat model the check can be bypassed, leading to an out-of-bound memory access.</desc>
+      <bug_condition>tavil_mad_input >= sizeof(tavil_conn_mad_text)/sizeof(tavil_conn_mad_text[0])</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0050,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index (stored in local variable ""index"")</tainted_var>
+  <sink>store->val[b_idx][0][index]</sink>","<tainted_var>ucontrol->id.index (stored in local variable ""index"")</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an index into multi-dimensional arrays (store->val[b_idx][p_idx][index] and others) without any bounds check, potentially leading to arbitrary memory access if the index is outside the valid array range.</desc>
+      <bug_condition>index is not within the valid range of the corresponding arrays (i.e., index &lt; 0 or index &gt;= array_length)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0044,still_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>snd_soc_enum_item_to_val(e, item[0]) << e->shift_l</sink>",not_a_bug,msm-sound:0045,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>pr_debug(""%s: %lu new topology %s\n"", __func__, fe_id, msm_pcm_fe_topology_text[item])</sink>","<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using the tainted variable as an index into msm_pcm_fe_topology_text can lead to an out-of-bound access if it is greater than or equal to the array’s size.</desc>
+      <bug_condition>ucontrol->value.enumerated.item[0] >= ARRAY_SIZE(msm_pcm_fe_topology_text)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0053,eliminated,o3-mini,,
+"<tainted_var>params->fifo_size</tainted_var>
+  <sink>params_channels(params)</sink>",not_a_bug,msm-sound:0054,not_a_bug,o3-mini,,
+"<tainted_var>idx</tainted_var>
+  <sink>eq->per_band_cfg[idx].band_idx = idx</sink>","<tainted_var>idx</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable 'idx' is used directly to index the 'per_band_cfg' array, which may result in an out-of-bound access if 'idx' is set by an attacker to a value greater than or equal to MAX_EQ_BANDS.</desc>
+      <bug_condition>idx >= MAX_EQ_BANDS</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0048,eliminated,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if(index_offset != 0)</sink>",not_a_bug,msm-sound:0058,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>mi2s_rx_cfg[idx].channels = ucontrol->value.enumerated.item[0] + 1</sink>",not_a_bug,msm-sound:0061,not_a_bug,o3-mini,,
+"<tainted_var>be_idx (from ucontrol->value.integer.value[0])</tainted_var>
+  <sink>adm_set_port_multi_ch_map(channel_map, msm_bedais[be_idx].port_id)</sink>",not_a_bug,msm-sound:0064,not_a_bug,o3-mini,,
+"<tainted_var>slim_tx_cfg[ch_num].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = slim_tx_cfg[ch_num].channels - 1</sink>","<tainted_var>slim_tx_cfg[ch_num].channels</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Subtracting 1 from the tainted value can yield a negative number (e.g., when the value is 0), which is then stored as an index in ucontrol->value.enumerated.item[0]. This negative index can potentially lead to an out-of-bound access.</desc>
+      <bug_condition>slim_tx_cfg[ch_num].channels == 0</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0026,eliminated,o3-mini,,
+"<tainted_var>NOT SUPPORTED</tainted_var>
+  <sink>NOT SUPPORTED</sink>",not_a_bug,msm-sound:0057,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id</tainted_var>
+  <sink>snd_ctl_get_ioffidx(kcontrol, &ucontrol->id)</sink>","<tainted_var>ucontrol->id</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted value is used in arithmetic within snd_ctl_get_ioffidx to compute an index, which is then used to access a substream. An attacker-controlled value could overflow, resulting in an incorrect index and potential out-of-bound memory access.</desc>
+      <bug_condition>ucontrol->id causes arithmetic overflow in snd_ctl_get_ioffidx, resulting in an index that exceeds the valid range</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0063,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>val = ucontrol->value.integer.value[0] + SND_US16X08_KCBIAS(kcontrol)</sink>",not_a_bug,msm-sound:0067,not_a_bug,o3-mini,,
+"<tainted_var>tdm_tx_cfg[port.mode][port.channel].channels</tainted_var>
+  <sink>pr_debug(""%s: tdm_tx_ch = %d, item = %d\n"", __func__, tdm_tx_cfg[port.mode][port.channel].channels - 1, ucontrol->value.enumerated.item[0])</sink>",not_a_bug,msm-sound:0016,not_a_bug,o3-mini,,
+"<tainted_var>slim_rx_cfg[ch_num].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = slim_rx_cfg[ch_num].channels - 1</sink>",not_a_bug,msm-sound:0017,not_a_bug,o3-mini,,
+"<tainted_var>portb</tainted_var>
+  <sink>IAXXX_PCM_PORT_WORD_LEN_SET_GET(portb, PCM_PORTB)</sink>","<vuln>NOT SUPPORTED</vuln>
+  <tainted_var>N/A</tainted_var>
+  <reason>The provided case (using TaintedPointerDereferenceChecker on this file) is currently not supported by our analysis tool.</reason>",msm-sound:0070,still_a_bug,o3-mini,,
+"<tainted_var>tx_num</tainted_var>
+  <sink>for (i = 0; i < tx_num; i++)</sink>",not_a_bug,msm-sound:0022,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index</tainted_var>
+  <sink>elem->cache_val[index] = val</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an array index for elem->cache_val without any bounds verification, which may lead to an out-of-bound access.</desc>
+      <bug_condition>ucontrol->id.index is not within the valid range of elem->cache_val (e.g., ucontrol->id.index < 0 or ucontrol->id.index >= array size)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0035,still_a_bug,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (index_offset != 0)</sink>",not_a_bug,msm-sound:0062,not_a_bug,o3-mini,,
+"<tainted_var>gain</tainted_var>
+  <sink>some_func(gain)</sink>",not_a_bug,msm-sound:0094,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>msm_vi_feed_tx_ch = ucontrol->value.integer.value[0] + 1</sink>",not_a_bug,msm-sound:0106,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>usb_tx_cfg.channels = ucontrol->value.integer.value[0] + 1</sink>",not_a_bug,msm-sound:0115,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>aanc_info.aanc_tx_port = (SLIMBUS_0_RX - 1 + (slim0_rx_aanc_fb_port * 2))</sink>",not_a_bug,msm-sound:0118,not_a_bug,o3-mini,,
+"<tainted_var>index_offset</tainted_var>
+  <sink>if (length != 1 || index_offset != 0)</sink>",not_a_bug,msm-sound:0069,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>snd_soc_put_volsw(ucontrol->value.integer.value[0])</sink>",not_a_bug,msm-sound:0072,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id, first propagated via local variable 'idx'</tainted_var>
+  <sink>snd_pcm_chmap_substream(info, idx)</sink>","<tainted_var>ucontrol->id propagated via idx</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted value is used as an index (idx) in the call to snd_pcm_chmap_substream, which may cause an out-of-bound access if idx is not within the valid substream range.</desc>
+      <bug_context>substream = snd_pcm_chmap_substream(info, idx);</bug_context>
+      <bug_condition>idx is greater than or equal to the valid substream count</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0111,eliminated,o3-mini,,
+"<tainted_var>tdm_tx_cfg[port.mode][port.channel].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = tdm_tx_cfg[port.mode][port.channel].channels - 1</sink>",not_a_bug,msm-sound:0024,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index (copied into local variable ""index"")</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = elem->cache_val[index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an index to access elem->cache_val without any bounds check.</desc>
+      <bug_context>ucontrol->value.integer.value[0] = elem->cache_val[index];</bug_context>
+      <bug_condition>If index is negative or index is greater than or equal to the number of elements in elem->cache_val</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0103,still_a_bug,o3-mini,,
+"<tainted_var>bufs</tainted_var>
+  <sink>transfer(substream, c, hwoff, *bufs + off, frames)</sink>","<tainted_var>bufs</tainted_var>
+  <vulns>
+    <vuln>
+      <type>arbitrary_memory_access</type>
+      <desc>The tainted pointer ""bufs"" is dereferenced and used in pointer arithmetic without proper bounds checking. An attacker-controlled value of *bufs combined with ""off"" could lead to accessing an invalid or unintended memory region.</desc>
+      <bug_condition>*bufs is controlled by the attacker such that *bufs + off points outside the intended valid memory region.</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0116,still_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[1]</tainted_var>
+  <sink>max - val2</sink>",not_a_bug,msm-sound:0059,not_a_bug,o3-mini,,
+"<tainted_var>user</tainted_var>
+  <sink>user->status = status</sink>","<tainted_var>user</tainted_var>
+  <vulns>
+    <vuln>
+      <type>arbitrary_memory_access</type>
+      <desc>The tainted pointer 'user' (or user_v3), derived from an attacker-controlled argument, is dereferenced (e.g., via 'user->status = status') without validation, possibly allowing arbitrary memory writes in kernel space.</desc>
+      <bug_condition>arg is attacker-controlled with no proper pointer validation</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0031,eliminated,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++)</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite/very-large_loop</type>
+      <desc>Since num_commands is directly used as the loop bound without any limiting check, an attacker-controlled high value could cause the loop to iterate excessively, leading to potential denial-of-service effects.</desc>
+      <bug_condition>num_commands is arbitrarily large, exceeding reasonable limits for the provided buffer size.</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The subsequent GET_NEXT calls in the loop, which rely on the number of iterations, may read beyond the valid memory region if num_commands exceeds the actual commands available in the buffer.</desc>
+      <bug_condition>num_commands > number of valid commands in the input buffer.</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0046,still_a_bug,o3-mini,,
+"<tainted_var>control->id</tainted_var>
+  <sink>snd_ctl_get_ioff(kctl, &control->id)</sink>","<tainted_var>control->id</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The arithmetic in snd_ctl_get_ioff, when given a maliciously crafted tainted control->id, can overflow and yield an index_offset that might exceed the bounds of the kctl->vd array.</desc>
+      <bug_condition>If control->id is set such that index_offset > allocated length of kctl->vd</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0039,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index propagated to local variable ""index""</tainted_var>
+  <sink>elem->cache_val[index] = val</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an index to write into elem->cache_val without bounds checking. If the index is set outside the allocated range, it may cause an out-of-bound access with potential memory corruption.</desc>
+      <bug_condition>index < 0 or index >= allocated size of elem->cache_val</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0085,still_a_bug,o3-mini,,
+"<tainted_var>app_type</tainted_var>
+  <sink>if (lsm_app_type_cfg[idx].app_type == app_type)</sink>",not_a_bug,msm-sound:0004,not_a_bug,o3-mini,,
+"<tainted_var>val</tainted_var>
+  <sink>val *= cval->res</sink>",not_a_bug,msm-sound:0087,not_a_bug,o3-mini,,
+"<tainted_var>ch_mixer->output_channel</tainted_var>
+  <sink>(ch_mixer->input_channels[channel_index] * ch_mixer->output_channel)</sink>","<tainted_var>ch_mixer->output_channel</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>The tainted variable is used in an arithmetic computation that calculates the memory allocation size (param_size). An integer overflow can result in an underestimated buffer size, leading to subsequent out‐of‐bound memory writes.</desc>
+      <bug_condition>When (ch_mixer->input_channels[channel_index] * ch_mixer->output_channel) overflows the integer range, causing param_size to be too small for the expected data</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0002,still_a_bug,o3-mini,,
+"<tainted_var>channel_mode (function parameter)</tainted_var>
+  <sink>roundup(ep1_payload.dev_num_channel, 4)</sink>",not_a_bug,msm-sound:0005,not_a_bug,o3-mini,,
+"<tainted_var>rx_num</tainted_var>
+  <sink>for (i = 0; i < rx_num; i++)</sink>","<tainted_var>rx_num</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable controls the number of loop iterations that copy data into a fixed-size array. If rx_num is set greater than AFE_PORT_MAX_AUDIO_CHAN_CNT, it leads to an out-of-bound access on slot_mapping->offset.</desc>
+      <bug_condition>rx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0015,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id (propagated into local variable ""idx"")</tainted_var>
+  <sink>snd_pcm_chmap_substream(info, idx)</sink>","<tainted_var>ucontrol->id (stored in local variable ""idx"")</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable ""idx"" is passed to snd_pcm_chmap_substream without bounds checking. If ""idx"" is set outside the valid range expected by the function, it may lead to an out-of-bound memory access.</desc>
+      <bug_condition>idx is not within the valid range expected by snd_pcm_chmap_substream (e.g., idx ≥ number of available substreams)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0032,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>slim_tx_cfg[ch_num].channels = ucontrol->value.enumerated.item[0] + 1</sink>",not_a_bug,msm-sound:0056,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index</tainted_var>
+  <sink>buf[13] = index + 1</sink>",not_a_bug,msm-sound:0071,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index (propagated to local variable ""index"")</tainted_var>
+  <sink>store->val[EQ_STORE_BAND_IDX(elem->head.id)][EQ_STORE_PARAM_IDX(elem->head.id)][index]</sink>","<tainted_var>ucontrol->id.index (propagated to local variable ""index"")</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted index is used directly to subscript store->val[...][...], which may lead to an out-of-bound access if its value falls outside the valid array bounds.</desc>
+      <bug_condition>index < 0 or index >= allocated size of store->val[EQ_STORE_BAND_IDX(elem->head.id)][EQ_STORE_PARAM_IDX(elem->head.id)]</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0089,uncertain,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>pr_debug(""%s: tdm_rx_ch = %d, item = %d\n"", __func__, tdm_rx_cfg[port.mode][port.channel].channels, ucontrol->value.enumerated.item[0] + 1)</sink>",not_a_bug,msm-sound:0091,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>tdm_rx_cfg[port.mode][port.channel].channels = ucontrol->value.enumerated.item[0] + 1</sink>",not_a_bug,msm-sound:0095,not_a_bug,o3-mini,,
+"<tainted_var>numid (passed as a function parameter and stored in the local variable %numid.addr)</tainted_var>
+  <sink>if (kctl->id.numid <= numid && kctl->id.numid + kctl->count > numid)</sink>",not_a_bug,msm-sound:0099,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id</tainted_var>
+  <sink>snd_ctl_get_ioff(kcontrol, &ucontrol->id) * size</sink>","<tainted_var>ucontrol->id</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The arithmetic involving snd_ctl_get_ioff(kcontrol, &ucontrol->id) multiplied by size may cause an integer overflow, leading to an incorrect computed offset and thereby an out-of-bound memory access in the memcpy.</desc>
+      <bug_condition>If snd_ctl_get_ioff(kcontrol, &ucontrol->id) * size overflows due to attacker-controlled ucontrol->id, causing the computed pointer to fall outside the valid memory region of ue->elem_data.</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0126,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>tdm_tx_cfg[port.mode][port.channel].channels = ucontrol->value.enumerated.item[0] + 1</sink>","<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <vulns>
+    <vuln>
+      <type>not_a_bug</type>
+      <desc>The addition may overflow (an arithmetic issue), but it does not directly cause an infinite/very-large loop or any memory bug (such as out-of-bound access, buffer overflow, or arbitrary memory access) as defined by our current scope.</desc>
+      <bug_condition>N/A</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0110,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index (propagated via local variable ""index"")</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = store->val[val_idx][index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted index is used to access the array store->val[val_idx] without checking bounds, potentially causing an out-of-bound access.</desc>
+      <bug_condition>index is outside the valid range of store->val[val_idx] (e.g., index < 0 or index ≥ size of store->val[val_idx])</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0117,uncertain,o3-mini,,
+"<tainted_var>ddp->params_length</tainted_var>
+  <sink>for (cnt = 0; cnt < ddp->params_length; cnt++) { … }</sink>","<tainted_var>ddp->params_length</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_loop</type>
+      <desc>Using the tainted variable as the loop bound may lead to a very large or infinite loop if an attacker sets it to an arbitrarily high value.</desc>
+      <bug_condition>ddp->params_length is set to an extremely high value</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used to index into arrays (ddp->params_id and ddp->params_value), which can lead to out-of-bound memory accesses if its value exceeds the actual array capacity.</desc>
+      <bug_condition>ddp->params_length > DDP_DEC_MAX_NUM_PARAM</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0066,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>usb_rx_cfg.channels = ucontrol->value.integer.value[0] + 1</sink>",not_a_bug,msm-sound:0068,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[1]</tainted_var>
+  <sink>slot_offset[1] = offset_val;</sink>","<tainted_var>ucontrol->value.integer.value[1]</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable (via channel) is used as an index when selecting tdm_cfg[interface][channel].tdm_slot_offset. If the channel value falls outside the valid range (channel < 0 or channel >= TDM_PORT_MAX), the resulting slot_offset pointer may be invalid, and the subsequent write to slot_offset[1] can lead to an out-of-bound memory access or arbitrary memory write.</desc>
+      <bug_condition>channel < 0 or channel >= TDM_PORT_MAX</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0079,eliminated,o3-mini,,
+"<tainted_var>idx</tainted_var>
+  <sink>if (idx > MAX_EQ_BANDS)</sink>","<tainted_var>idx</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The improper bounds check (using ""if (idx > MAX_EQ_BANDS)"" instead of "">= MAX_EQ_BANDS"") may allow idx to equal MAX_EQ_BANDS, which is an invalid index for arrays sized with MAX_EQ_BANDS, potentially leading to out-of-bound access.</desc>
+      <bug_context>if (idx > MAX_EQ_BANDS) { ... } where idx is later used to index the eq->per_band_cfg array</bug_context>
+      <bug_condition>idx == MAX_EQ_BANDS</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0101,still_a_bug,o3-mini,,
+"<tainted_var>NOT SUPPORTED</tainted_var>
+  <sink>NOT SUPPORTED</sink>","<vuln>false_alarm</vuln>
+  <reason>The provided snippet is not supported for analysis by the TaintedPointerDereferenceChecker, so we cannot conclude a vulnerability. The tool’s message indicates that it does not currently handle this case, which avoids any false identification of an out-of-bound access.</reason>",msm-sound:0105,not_exploitable,o3-mini,,
+"<tainted_var>ch_mixer->output_channel (propagated through the local variable ""index"")</tainted_var>
+  <sink>adm_pspd_params[index] = PCM_CHANNEL_FL;</sink>","<tainted_var>ch_mixer->output_channel (via local variable ""index"")</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used in computing an index into adm_pspd_params without sufficient bounds checking. An attacker can supply an unexpected value causing the computed index to exceed the allocated buffer size, leading to an out-of-bound memory access.</desc>
+      <bug_condition>ch_mixer->output_channel not equal to the expected constants or arithmetic overflows such that index ≥ allocated size</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0001,still_a_bug,o3-mini,,
+"<tainted_var>rx_num</tainted_var>
+  <sink>for (i = 0; i < rx_num; i++)</sink>","<tainted_var>rx_num</tainted_var>
+  <vulns>
+    <vuln>
+      <type> very_large_loop </type>
+      <desc>Using rx_num as the loop bound can result in an infinite or very large number of iterations if rx_num is set to an arbitrarily high value.</desc>
+      <bug_condition> rx_num is set to a value greater than the expected or safe operational limit </bug_condition>
+    </vuln>
+    <vuln>
+      <type> out_of_bound_access </type>
+      <desc>The tainted variable rx_num is used to index into an array (rx_slot and the shared_ch_mapping) without necessarily guaranteeing that rx_num is within the array size.</desc>
+      <bug_condition> rx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT (or the actual array size) </bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0003,eliminated,o3-mini,,
+"<tainted_var>ep2_payload.dev_num_channel (propagated from this_adm.num_ec_ref_rx_chans)</tainted_var>
+  <sink>ep2_payload_size = 8 + roundup(ep2_payload.dev_num_channel, 4)</sink>","<tainted_var>ep2_payload.dev_num_channel</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>An attacker-controlled large value in ep2_payload.dev_num_channel can cause an integer overflow when computing ep2_payload_size (8 + roundup(dev_num_channel, 4)). This miscalculation can later be exploited in memory copying, potentially triggering a buffer overflow.</desc>
+      <bug_condition>ep2_payload.dev_num_channel > (INT_MAX - 8) after rounding up to the next multiple of 4</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0019,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index (propagated via the local variable ""index"")</tainted_var>
+  <sink>buf[26] = store->val[COMP_STORE_IDX(SND_US16X08_ID_COMP_SWITCH)][index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable ""index"" from ucontrol->id.index is used to index into store->val without any bounds check, potentially leading to an out-of-bound memory access in kernel space.</desc>
+      <bug_condition>If index is less than 0 or greater than or equal to the allocated size of the inner arrays of store->val, an out-of-bound access occurs.</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0041,uncertain,o3-mini,,
+"<tainted_var>ch_mixer->output_channel (propagated via local variable ""param_size"")</tainted_var>
+  <sink>roundup(param_size, 4)</sink>","<tainted_var>ch_mixer->output_channel</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>Integer overflow in the computation of param_size can lead to an allocation that is too small. This may cause subsequent writes to overflow the allocated buffer, resulting in a memory corruption vulnerability.</desc>
+      <bug_condition>2 * (4 + ch_mixer->output_channel + ch_mixer->input_channels[channel_index] + (ch_mixer->output_channel * ch_mixer->input_channels[channel_index])) exceeds INT_MAX</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0012,still_a_bug,o3-mini,,
+"<tainted_var>eq->config.num_bands</tainted_var>
+  <sink>config_param_length = EQ_CONFIG_PARAM_SZ + (EQ_CONFIG_PER_BAND_PARAM_SZ * eq->config.num_bands)</sink>","<tainted_var>eq->config.num_bands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>When eq->config.num_bands is tainted and set to a value high enough, the arithmetic calculation for config_param_length overflows. This computed length is later used in memory operations, potentially leading to an out-of-bound buffer write or insufficiently allocated memory region.</desc>
+      <bug_condition>eq->config.num_bands > (UINT32_MAX - EQ_CONFIG_PARAM_SZ) / EQ_CONFIG_PER_BAND_PARAM_SZ</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0027,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id</tainted_var>
+  <sink>char *dst = ue->elem_data + snd_ctl_get_ioff(kcontrol, &ucontrol->id) * size;</sink>","<tainted_var>ucontrol->id</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable directly affects pointer arithmetic (via snd_ctl_get_ioff) used to compute the destination pointer for memcpy. An integer overflow during the multiplication can yield an invalid offset, resulting in an out-of-bound memory access.</desc>
+      <bug_condition>snd_ctl_get_ioff(kcontrol, &ucontrol->id) > (UINT_MAX / size)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0040,likely_safe,o3-mini,,
+"<tainted_var>info->channel</tainted_var>
+  <sink>info->first = info->channel * width</sink>",not_a_bug,msm-sound:0047,not_a_bug,o3-mini,,
+"<tainted_var>channel (from ucontrol->value.integer.value[1])</tainted_var>
+  <sink>pr_debug(""%s: slot offset[0] = %d\n"", __func__, slot_offset[0])</sink>","<tainted_var>channel</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted channel variable is used to index the tdm_cfg array to obtain a pointer (slot_offset), which is later dereferenced. If channel is outside the expected range, this can result in an out-of-bound memory access or arbitrary memory access.</desc>
+      <bug_condition>channel not within [0, TDM_PORT_MAX)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0049,eliminated,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++)</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_or_very_large_loop</type>
+      <desc>The tainted num_commands is used directly as a loop bound; an attacker may supply a very high value, leading to an infinite or excessively long loop.</desc>
+      <bug_condition>num_commands is arbitrarily high</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The repeated GET_NEXT calls within the loop may result in reading beyond the input buffer if num_commands exceeds the actual payload size.</desc>
+      <bug_condition>num_commands > actual available commands in the payload</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0065,still_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>buf[8] = val - SND_US16X08_KCBIAS(kcontrol)</sink>",not_a_bug,msm-sound:0073,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>ucontrol->value.integer.value[0] = max - ucontrol->value.integer.value[0]</sink>",not_a_bug,msm-sound:0077,not_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>pr_debug(ucontrol->value.enumerated.item[0] + 1)</sink>",not_a_bug,msm-sound:0082,not_a_bug,o3-mini,,
+"<tainted_var>ddp->params_length</tainted_var>
+  <sink>for (i = 0; i < ddp->params_length; i++)</sink>","<tainted_var>ddp->params_length</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_loop</type>
+      <desc>The loop control uses ddp->params_length directly, so if an attacker sets it to a very large value, it could result in an infinite or very-large loop.</desc>
+      <bug_condition>ddp->params_length is set to a value far greater than the actual allocated array size</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The same tainted variable drives array indexing on ddp->params_id and ddp->params_value, which can lead to out-of-bound memory access.</desc>
+      <bug_condition>ddp->params_length > allocated size of ddp->params_id or ddp->params_value</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0084,eliminated,o3-mini,,
+"<tainted_var>offset</tainted_var>
+  <sink>msm_srs_trumedia_params.raw_params[offset] = value</sink>","<tainted_var>offset</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The attacker-controlled offset is used to index the msm_srs_trumedia_params.raw_params array; if the check (offset < max) is bypassed or misinterpreted, it may lead to an out-of-bound access.</desc>
+      <bug_condition>offset >= max (i.e., attacker can set offset to any __u16 value that does not reflect the actual array bounds)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0093,eliminated,o3-mini,,
+"<tainted_var>ucontrol->value.integer.value[0]</tainted_var>
+  <sink>ext_disp_rx_cfg[idx].channels = ucontrol->value.integer.value[0] + 2</sink>",not_a_bug,msm-sound:0102,not_a_bug,o3-mini,,
+"<tainted_var>v3_hdr->param_size (propagated via local variable 'param_size')</tainted_var>
+  <sink>packed_size += param_size</sink>","<tainted_var>v3_hdr->param_size (via local variable param_size)</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>The tainted parameter size is added to a constant (either sizeof(struct param_hdr_v3) or sizeof(struct param_hdr_v1)) without a check in the iid_supported branch, allowing an integer overflow that may lead to a subsequent buffer overflow in memory operations.</desc>
+      <bug_condition>When iid_supported is true and param_size > (UINT32_MAX - sizeof(struct param_hdr_v3))</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0108,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = elem->cache_val[index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used to index elem->cache_val without bounds checks. If the tainted value is less than 0 or exceeds the array's limit, it will result in an out-of-bound access (arbitrary memory read).</desc>
+      <bug_condition>ucontrol->id.index < 0 or ucontrol->id.index >= (number of elements in elem->cache_val)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0092,still_a_bug,o3-mini,,
+"<tainted_var>mux</tainted_var>
+  <sink>strcmp(path->name, e->texts[mux])</sink>","<tainted_var>mux</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using tainted 'mux' as an index for e->texts in the strcmp call can lead to an out-of-bound access if 'mux' is not within the valid index range.</desc>
+      <bug_condition>mux < 0 or mux >= (number of elements in e->texts)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0100,eliminated,o3-mini,,
+"<tainted_var>num_app_types</tainted_var>
+  <sink>for (j = 0; j < num_app_types; j++)</sink>","<tainted_var>num_app_types</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using num_app_types as the loop bound causes writes into lsm_app_type_cfg array. If num_app_types > MAX_APP_TYPES, the code writes past the allocated array, resulting in out-of-bound memory access.</desc>
+      <bug_condition>num_app_types > MAX_APP_TYPES</bug_condition>
+    </vuln>
+    <vuln>
+      <type>infinite_or_large_loop</type>
+      <desc>If num_app_types is set to an extremely high value, the loop may execute an excessively large number of iterations, leading to potential performance issues or denial-of-service.</desc>
+      <bug_condition>num_app_types is arbitrarily large</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0121,eliminated,o3-mini,,
+"<tainted_var>val (originating from ucontrol->value.integer.value[0])</tainted_var>
+  <sink>buf[8] = val - SND_US16X08_KCBIAS(kcontrol);</sink>",not_a_bug,msm-sound:0104,not_a_bug,o3-mini,,
+"<tainted_var>mi2s_tx_cfg[idx].channels</tainted_var>
+  <sink>ucontrol->value.enumerated.item[0] = mi2s_tx_cfg[idx].channels - 1</sink>",not_a_bug,msm-sound:0008,not_a_bug,o3-mini,,
+"<tainted_var>param_size</tainted_var>
+  <sink>pkt_size += param_size</sink>","<tainted_var>param_size</tainted_var>
+  <vulns>
+    <vuln>
+      <type>buffer_overflow</type>
+      <desc>Adding param_size to pkt_size can cause an integer overflow, which in turn leads to an allocation size smaller than expected and a potential buffer overflow during the memcpy operation.</desc>
+      <bug_condition>param_size > (INT_MAX - sizeof(struct asm_stream_cmd_set_pp_params))</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0107,eliminated,o3-mini,,
+"<tainted_var>channel</tainted_var>
+  <sink>pr_debug(""%s: slot offset[1] = %d\n"", __func__, slot_offset[1])</sink>","<tainted_var>tainted_var</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using the tainted variable to index into the tdm_cfg array may bypass the intended channel check. When the attacker provides a value for channel less than 0 or greater than or equal to TDM_PORT_MAX, the derived pointer slot_offset may become invalid and the subsequent dereference at slot_offset[1] leads to an out-of-bound access.</desc>
+      <bug_condition>channel < 0 or channel >= TDM_PORT_MAX</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0096,eliminated,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++)</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_loop</type>
+      <desc>The tainted variable directly controls the loop iteration count, so an attacker can set num_commands to an arbitrarily high value resulting in an infinite/very-large loop.</desc>
+      <bug_condition>num_commands exceeds the valid range of the values buffer</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>With num_commands set too high, subsequent GET_NEXT calls may read beyond the allocated buffer, causing out-of-bound memory access.</desc>
+      <bug_condition>num_commands > (param_max_offset - values_pointer_range)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0125,still_a_bug,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++) { }</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_or_very_large_loop</type>
+      <desc>Using num_commands as the loop bound without an upper limit may result in an arbitrarily long loop, causing a denial-of-service condition.</desc>
+      <bug_condition>num_commands is set to an arbitrarily high value</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>If num_commands exceeds the valid number of commands available from the user-supplied values, subsequent GET_NEXT() calls may read beyond the intended buffer, leading to out-of-bound access.</desc>
+      <bug_condition>num_commands > actual number of valid commands in the input array</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0098,still_a_bug,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++)</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_loop</type>
+      <desc>The tainted variable controls the loop bound directly. If num_commands is set to an arbitrarily large value, the loop may iterate excessively, causing a denial-of-service.</desc>
+      <bug_condition>num_commands exceeds the number of valid entries available in the values array</bug_condition>
+    </vuln>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using num_commands as the iteration count without adequate bounds checking may lead to out-of-bound memory accesses when the GET_NEXT macro reads beyond the permitted memory range.</desc>
+      <bug_condition>num_commands is greater than the number of values available within the memory range defined by param_max_offset</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0037,still_a_bug,o3-mini,,
+"<tainted_var>num_commands</tainted_var>
+  <sink>for (i = 0; i < num_commands; i++)</sink>","<tainted_var>num_commands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>infinite_loop</type>
+      <desc>Using num_commands as the loop bound without proper constraints can lead to an extremely large (or even infinite) loop execution, causing potential denial-of-service.</desc>
+      <bug_condition>num_commands is set to a very large value (e.g., near INT_MAX)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0119,still_a_bug,o3-mini,,
+"<tainted_var>ucontrol->id.index</tainted_var>
+  <sink>ucontrol->value.integer.value[0]=elem->cache_val[index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable is used as an array index (elem->cache_val[index]) without bounds checking, potentially leading to an out-of-bound memory access.</desc>
+      <bug_condition>ucontrol->id.index is not within the valid index range of elem->cache_val (e.g., ucontrol->id.index < 0 or ucontrol->id.index ≥ array_length)</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0029,still_a_bug,o3-mini,,
+"<tainted_var>eq_params->num_bands</tainted_var>
+  <sink>for (i = 0; i < eq_params->num_bands; i++)</sink>","<tainted_var>eq_params->num_bands</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>Using eq_params->num_bands as the loop bound may lead to an out-of-bound access when copying data into the fixed-size array (eq.eq_bands) if eq_params->num_bands exceeds the allocated size.</desc>
+      <bug_condition>eq_params->num_bands > MAX_EQ_BANDS (allocated array size)</bug_condition>
+    </vuln>
+    <vuln>
+      <type>infinite_or_very_large_loop</type>
+      <desc>An arbitrarily high value for eq_params->num_bands can result in an excessive number of loop iterations, potentially causing performance issues.</desc>
+      <bug_condition>eq_params->num_bands is extremely high</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0007,still_a_bug,o3-mini,,
+"<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <sink>snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0])</sink>","<tainted_var>ucontrol->value.enumerated.item[0]</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>
+        The tainted variable is used as an index in the call to snd_soc_enum_item_to_val. If an attacker sets its
+        value to be greater than or equal to e->items, the function could perform an out‐of-bound access.
+      </desc>
+      <bug_condition>ucontrol->value.enumerated.item[0] >= e->items</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0123,eliminated,o3-mini,,
+"<tainted_var>ucontrol->id.index (propagated to local variable ""index"")</tainted_var>
+  <sink>buf[11] = store->val[b_idx][0][index]</sink>","<tainted_var>ucontrol->id.index</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable ""index"" is directly used to index into the third dimension of store->val, which can lead to an out-of-bound access if index is not within the valid range.</desc>
+      <bug_condition>index is outside the bounds of store->val's third dimension</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0028,still_a_bug,o3-mini,,
+"<tainted_var>mfc_cfg.num_channels</tainted_var>
+  <sink>for (i = 0; i < mfc_cfg.num_channels; i++)</sink>","<tainted_var>mfc_cfg.num_channels</tainted_var>
+  <vulns>
+    <vuln>
+      <type>out_of_bound_access</type>
+      <desc>The tainted variable mfc_cfg.num_channels is used as the loop bound to index into the channel_type array. If it exceeds the array’s allocated size, it leads to an out-of-bound access.</desc>
+      <bug_context>for (i = 0; i < mfc_cfg.num_channels; i++) { mfc_cfg.channel_type[i] = ... }</bug_context>
+      <bug_condition>mfc_cfg.num_channels is greater than the allocated size of mfc_cfg.channel_type</bug_condition>
+    </vuln>
+    <vuln>
+      <type>infinite_or_very_large_loop</type>
+      <desc>If mfc_cfg.num_channels is set to an extremely high value, the loop may execute an unexpectedly large number of iterations, potentially causing a denial of service.</desc>
+      <bug_context>for (i = 0; i < mfc_cfg.num_channels; i++) { ... }</bug_context>
+      <bug_condition>mfc_cfg.num_channels is set to a value that is extremely large</bug_condition>
+    </vuln>
+  </vulns>",msm-sound:0000,still_a_bug,o3-mini,,

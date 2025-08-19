@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: lmsuture-db
+    environment:
+      POSTGRES_DB: lmsuture
+      POSTGRES_USER: lmsuture_user
+      POSTGRES_PASSWORD: password1
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lmsuture_user -d lmsuture"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: buglens-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # DB bits
+      DATABASE_URL: postgresql://lmsuture_user:password1@db:5432/lmsuture
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: lmsuture_user
+      PGPASSWORD: password1
+      PGDATABASE: lmsuture
+      # Flask reloader
+      FLASK_APP: flask_app.py
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"
+    working_dir: /opt/BugLens/app/demo
+    # Use Flask's dev server with reloader
+    command: ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000", "--reload"]
+    ports: ["5000:5000"]
+    # Mount only your app folder so code changes auto-reload
+    volumes:
+      - ./BugLens/app:/opt/BugLens/app:rw
+    restart: unless-stopped
+
+
+volumes:
+  pgdata:
