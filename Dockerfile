@@ -15,12 +15,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Base working directory
 WORKDIR /opt
 
+ARG CACHE_BUST=1
+
 # --- Clone BugLens (with submodules) ---
 RUN git clone --recursive https://github.com/seclab-ucr/BugLens.git \
  && cd BugLens && git submodule update --init --recursive
 
 # Optional: Python deps for BugLens if present
-RUN bash -lc 'cd /opt/BugLens && if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi'
+RUN bash -lc 'cd /opt/BugLens/app && pip install --no-cache-dir -r requirements.txt'
 
 # --- Paths & URLs ---
 ENV RES_DIR=/opt/resources \
