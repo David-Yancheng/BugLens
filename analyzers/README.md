@@ -14,6 +14,7 @@ Android Linux Kernel
 - snapshot for Suture:
     - [msm](https://android.googlesource.com/kernel/msm/+/refs/tags/android-10.0.0_r0.56)
     - [msm-extra](https://android.googlesource.com/kernel/msm-extra/+archive/ed716fd749931264bb9dde8d8b1434446568b8c9.tar.gz)
+    - [techpack] `src-techpack.tar.gz` (extracted from aosp `android-10.0.0_r45` branch)
 
 ## Analysis Results (from two original analyzers):
 

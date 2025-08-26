@@ -6,7 +6,11 @@ The paper is available at https://arxiv.org/abs/2504.11711
 
 # Quick Start
 
-Based on docker (TODO: add docker image)
+
+- Step 0: git clone `git clone https://github.com/seclab-ucr/BugLens.git --recurse-submodules && cd BugLens` and set up your API keys in `.env` file (see `docker-compose.yml` for the keys needed)
+- Step 1: docker run `docker compose up --build`, it will build the docker image and start the container (database + app)
+- Step 2: open another terminal, and run `docker exec -it buglens-app bash` to get into the container, the runner is in `app/run.py`
+
 
 
 ## Source Code

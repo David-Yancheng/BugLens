@@ -9,17 +9,20 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # System deps for cloning, downloading, and extracting
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      git ca-certificates curl unzip xz-utils tar \
+      git ca-certificates curl unzip xz-utils tar codequery \
     && rm -rf /var/lib/apt/lists/*
 
 # Base working directory
 WORKDIR /opt
 
-ARG CACHE_BUST=1
+ARG CACHE_BUST=0
 
 # --- Clone BugLens (with submodules) ---
-RUN git clone --recursive https://github.com/seclab-ucr/BugLens.git \
- && cd BugLens && git submodule update --init --recursive
+# RUN git clone --recursive https://github.com/seclab-ucr/BugLens.git \
+#  && cd BugLens && git submodule update --init --recursive
+
+# No need to clone itself
+COPY . /opt/BugLens
 
 # Optional: Python deps for BugLens if present
 RUN bash -lc 'cd /opt/BugLens/app && pip install --no-cache-dir -r requirements.txt'
@@ -40,8 +43,15 @@ RUN curl -L -o "$RES_DIR/msm-4.4-codeql.zip" "$CODEQL_ZIP_URL" \
 
 # --- Build Suture snapshot as "../msm-android-10" by merging msm and msm-extra ---
 # Note: +archive tarballs have no top-level folder; extract directly into $MSM_DIR.
+# COPY analyzers/src-techpack.tar.gz /tmp/src-techpack.tar.gz
+
 RUN curl -L "$MSM_TGZ_URL"        | tar -xz -C "$MSM_DIR" \
  && curl -L "$MSM_EXTRA_TGZ_URL"  | tar -xz -C "$MSM_DIR"
+
+RUN rm -rf "$MSM_DIR"/techpack/* \
+ && tar -xz -f /opt/BugLens/analyzers/src-techpack.tar.gz -C "$MSM_DIR/techpack" \
+ && echo "Extraction of src-techpack completed." \
+ && ls -l "$MSM_DIR"/techpack | head -20
 
 # Set default workdir to the BugLens repo
 WORKDIR /opt/BugLens
